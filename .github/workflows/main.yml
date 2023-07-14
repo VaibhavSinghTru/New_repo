@@ -1,0 +1,30 @@
+name: TBS-Gamification-Dev
+
+on:
+  push:
+    branches: [TBS-Gamification-Dev]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
+
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: Create .env file Backend
+      run: |
+        echo "$DEV_ENV" >> ${{ github.workspace }}/.env
+      shell: bash
+      env:
+        BACKEND_ENV: ${{secrets.FILE_DEV_ENV}}
+    - run: npm install
+    - run: npm run build --if-present
