@@ -2,7 +2,7 @@ name: TBS-Gamification-Dev
 
 on:
   push:
-    branches: [TBS-Gamification-Dev]
+    branches: Main
 
 
 jobs:
