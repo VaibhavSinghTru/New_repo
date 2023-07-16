@@ -1,4 +1,4 @@
-name: Node_repo
+name: Node-repo
 
 on:
   push:
@@ -8,29 +8,63 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: ${{ matrix.node-version }}
+
+      - name: Create .env file Backend
+        run: |
+          echo "$DEV_ENV" >> ${{ github.workspace }}/.env
+        shell: bash
+        env:
+          DEV_ENV: ${{ secrets.File_dev }}
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run build
-        run: npm run build
+      - name: Build
+        run: npm run build --if-present
 
-      - name: Package
-        run: npm pack
-        env:
-          PACKAGE_NAME: "my-package"
+  archive-build-artifacts:
+    runs-on: ubuntu-latest
+    needs: build
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create a temp artifact downloads folder
+        run: mkdir downloads
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.PACKAGE_NAME }}
-          path: "*.tgz"
+          name: Archive artifact
+          path: downloads/artifact
+          retention-days: 30
+
+  deployment-on-wp:
+    runs-on: ubuntu-latest
+    needs: archive-build-artifacts
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install SSH Client
+        run: sudo apt-get install openssh-client -y
+
+      - name: Deploy Artifact using SFTP
+        run: |
+          sshpass -p ${{ secrets.SFTP_PASSWORD }} sftp -o StrictHostKeyChecking=no -P ${{ secrets.SFTP_PORT }} ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} <<EOF
+          put /source/of/artifact /destination/of/artifact/
+          EOF
