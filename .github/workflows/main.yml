@@ -1,9 +1,8 @@
-name: New_repo
+name: TBS-Gamification-Dev
 
 on:
   push:
-    branches: main
-
+    branches: [TBS-Gamification-Dev]
 
 jobs:
   build:
@@ -12,20 +11,38 @@ jobs:
       matrix:
         node-version: [14]
 
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        
-    - name: Create .env file Backend
-      run: |
-        echo "$DEV_ENV" >> ${{ github.workspace }}/.env
-      shell: bash
-      env:
-        BACKEND_ENV: ${{secrets.File_Dev}}
-    - run: npm install
-    - run: npm build --if -present
-  
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Create .env file Backend
+        run: |
+          echo "$DEV_ENV" >> ${{ github.workspace }}/.env
+        shell: bash
+        env:
+          BACKEND_ENV: ${{secrets.FILE_DEV_ENV}}
+      - run: npm install
+      - run: npm run build --if-present
+  hello:
+    runs on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create A temp artifact downlods folder
+        run: |
+          mkdir downlods
+          ls
+      - name: Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v3
+        with:
+          name: Archieve artifact
+          path: /downlods/artifact
+          retention-days: 30
+      - name: Downloads
+        uses: ./
+        with:
+          path: /new/path/artifactname
+ 
