@@ -4,6 +4,8 @@
   "description": "My project description",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
     "build": "tsc"
     "test": "echo \"Error: no test specified\" && exit 1"
   },
