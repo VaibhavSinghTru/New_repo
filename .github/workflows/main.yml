@@ -1,9 +1,9 @@
-name: TBS-Gamification-Dev
+name: New_repo
 
 on:
   push:
     branches:
-      - TBS-Gamification-Dev
+      - main
 
 jobs:
   build:
