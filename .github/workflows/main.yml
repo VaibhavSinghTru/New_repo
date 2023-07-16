@@ -1,8 +1,8 @@
-name: TBS-Gamification-Dev
+name: New_repo
 
 on:
   push:
-    branches: Main
+    branches: main
 
 
 jobs:
@@ -28,24 +28,4 @@ jobs:
         BACKEND_ENV: ${{secrets.FILE_DEV_ENV}}
     - run: npm install
     - run: npm run build --if-present
-  Deployment-DEV:
-    runs on: ubuntu-latest
-    needs: build
-    steps:
-    - name: 
-      uses: actions/upload-artifact@v3
-      with:
-       name: dist-without-markdown
-       path: |
-        
-    - name: 
-      uses: actions/upload-artifact@v3
-      with:
-        name: 
-        path: 
-    - name: 
-      uses: actions/upload-artifact@v3
-      with:
-        name: 
-        path: 
-        retention-days: 30
+  
