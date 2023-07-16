@@ -27,5 +27,5 @@ jobs:
       env:
         BACKEND_ENV: ${{secrets.FILE_DEV_ENV}}
     - run: npm install
-    - run: npm run build --if-present
+    - run: npm run build
   
