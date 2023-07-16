@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Memory Game - The Beer Store </title>
+    <link rel="icon" href="images/fav-icon.jpeg" sizes="32x32">
+    <link rel="stylesheet" href="css/style.css?v=fkjhkjhkh">
+    <script >
+        var scriptUrl = 'dist/gmtTag.bundle.js?' + Math.random() * 50000;
+         var scriptElement = document.createElement('script');
+         scriptElement.src = scriptUrl;
+         document.head.appendChild(scriptElement);
+     </script>
+    <!-- End Google Tag Manager -->
+ 
+
+</head>
+
+<body class="bg_color">
+
+  
+<audio id="myAudioTwo" preload="auto">
+    <source src="punch-140236_YV6uTxFt.mp3" type="audio/mpeg">
+</audio>
+<div class="container_main">
+    <div class="loaderOne memory_opacity">
+        <div class="loader_box">
+            <p>Get ready...</p>
+            <img src="images/loader.gif">
+        </div>
+    </div>
+    <div class="bg_color home">
+        <div class="bgImg">
+            <div class="demo"></div>
+            <div class="cloud_img">
+                <img class="cloud" src="images/Cloud.png" alt="Cloud">
+                <img class="cloud_mobile" src="images/Home-Cloud-Mobile.png" alt="Cloud">
+            </div>
+            <div class="score_board-section">
+                <div class="score_board score_board_desktop">
+                    <div class="score_board_left">
+                        <div class="time_btn" id="back">
+                            <div><a href="" class="back">Back</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- home -->
+            <div class="play_container mainsection">
+                <div class="memory_logo_box">
+                    <div class="memory_logo">
+                        <img src="images/memory-logo.svg">
+                    </div>
+                    <div class="memory_logo_text">
+                        <h1>Memory <br>
+                            Game </h1>
+                        <h6>Let’s play the game!</h6>
+                        <p>Touch a block to reveal a style of beer. Match as many styles as you can before your time
+                            runs out.</p>
+                    </div>
+                    <a id="game_button" class="game_button playgame btn_bg" >
+                        Play Now
+                    </a>
+                    <div class="game_link">
+                        <a  id="howtoplay">How to Play</a>
+                    </div>
+                </div>
+
+
+
+                <div id="intro" class="how_to_play_intro" style="display: none;">
+
+                    <div class="intro_box">
+                        <a href="./" class="close"><img src="images/close-icon.svg"></a>
+                        <div class="game_intro_box_container">
+                            <div class="game_box_heading">
+                                <h6>Instructions </h6>
+                            </div>
+                            <div class="intro-content">
+                                <div class="rowFlex">
+                                    <div class="intro_colum">
+                                        <div class="intro_img">
+                                            <img src="images/play-time.svg" alt="time">
+                                            <span class="intro_num">1</span>
+
+                                        </div>
+                                        <div class="intro_text">
+                                            <p>Players have 60 seconds to accurately match a variety of Beer Types
+                                                and Styles by flipping cards to find identical matches on the grid.
+                                                (Stouts, Lagers, IPA, Ales, etc.).</p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="intro_colum">
+                                        <div class="intro_img">
+                                            <img src="images/memorize.svg" alt="time">
+                                            <span class="intro_num">2</span>
+
+                                        </div>
+                                        <div class="intro_text">
+                                            <p>Players will be given 4 seconds at the start of each level to
+                                                memorize the grid before the timer resumes.</p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="intro_colum">
+                                        <div class="intro_img">
+                                            <img src="images/rewards.svg" alt="time">
+                                            <span class="intro_num">3</span>
+
+                                        </div>
+                                        <div class="intro_text">
+                                            <p>As players match and complete a grid they move to the next level and
+                                                earn an equivalent amount of points per match as the level they are
+                                                on. The higher the level, the more points the players earn per
+                                                match. Every level a player completes, they earn an additional 10
+                                                points.</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="intro_colum">
+                                        <div class="intro_img">
+                                            <img src="images/timer.svg" alt="time">
+                                            <span class="intro_num">4</span>
+
+                                        </div>
+                                        <div class="intro_text">
+                                            <p>The game concludes when the timer runs out.</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <button class="game_button w-100 playgame" id="howPlay">
+                                    Play Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end home -->
+
+        </div>
+    </div>
+</div>
+<!-- form popup -->
+<div class="memory_popup memory_opacity" id="memoryForm" style="display: none;">
+    <div class="game_intro_box">
+        <a class="close" href="./"><img src="images/close.svg"></a>
+        <div class="game_intro_box_container">
+            <!-- <div class="game_box_image">
+                <img src="images/checkmark.svg">
+            </div> -->
+            <div class="game_box_heading">
+                <h6>Memory Game</h6>
+            </div>
+            <div class="game_box_discription">
+                <p class="thankYou">Thank you for playing our Memory Game. For Ice cold deals, exciting contests, beer infused recipes and the latest on all-things beer, straight to your inbox. Sign up for our weekly newsletter today!</p>
+                </div>
+            <div class="memory_form">
+                <div class="w-50 pr-12 input-section">
+                    <input type="text" id="fname" name="fname" placeholder="First Name">
+                    <span id="fnameError" class="error-message"></span>
+                </div>
+                <div class="w-50 pl-12 input-section">
+                    <input type="text" id="lname" name="lname" placeholder="Last Name">
+                    <span id="lnameError" class="error-message"></span>
+                </div>
+                <div class="w-100 input-section">
+                    <input type="email" id="email" name="email" placeholder="Enter your email address">
+                    <span id="emailError" class="error-message"></span>
+                </div>
+            </div>
+            <div class="memory_checkbox">
+                <input type="checkbox" id="above_19">
+                <label for="above_19">Yes, I am over the age of 19.</label>
+                <span id="above_19_error" class="error-message"></span>
+            </div>
+            <div></div>
+            <div class="memory_checkbox">
+                <input type="checkbox" id="memory_subscribe_newsletter">
+                <label for="memory_subscribe_newsletter">I agree to receive electronic messages from The Beer Store
+                    containing information and offers with respect to products that may be of interest to me,
+                    including notification of sales, special events and store promotions. I may withdraw this
+                    consent at any time by selecting the unsubscribe option.</label>
+                <span id="memory_subscribe_newsletterError" class="error-message"></span>
+            </div>
+            <button class="game_button submit btn_bg">Submit your Score</button>
+            <div class="rule_regulation" style="display: none;">
+                <p>View contest <a  >Rules & Regulations</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end form popup -->
+<div class="container_main">
+    <div class="bg_color">
+        <div class="bgImg">
+            <div class="cloud-top"></div>
+            <div class="cloud_img">
+                <img class="cloud" src="images/Cloud.png" alt="Cloud">
+                <img class="cloud_mobile" src="images/Cloud-Mobile.png" alt="Cloud">
+            </div>
+            <!-- Game Memory -->
+            <div class="score_board-section">
+                <h2>Memory Game</h2>
+                <div class="score_board score_board_desktop">
+                    <div class="score_board_left">
+                        <div class="time_btn">
+                            <img src="images/time.svg" alt="time" id="timeimg">
+                            <div>
+                                <span>Time</span>
+                                <span class="orange" id="timer-value">1:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="score_board_right">
+                        <div class="score_btn">
+                            <div>
+                                <span>Score</span>
+                                <span class="yellow" id="score-value">0</span>
+                            </div>
+                        </div>
+                        <div class="label_btn">
+                            <img src="images/level.svg" alt="time" id="timeimg">
+                            <div>
+                                <span>Level</span>
+                                <span id="gameLevel" class="orange">1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="score_board score_board_mobile">
+                    <div class="score_board_left">
+                        <div class="time_btn">
+                            <img src="images/time.svg" alt="time" id="timeimg">
+                            <div>
+                                <span>Time</span>
+                                <span id="timer-value" class="orange">60</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="score_board_center">
+                        <div class="score_btn">
+                            <div>
+                                <span>Score</span>
+                                <span class="yellow" id="score-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="score_board_right">
+                        <div class="label_btn">
+                            <img src="images/level.svg" alt="time" id="timeimg">
+                            <div>
+                                <span>Level</span>
+                                <span id="gameLevel" class="orange">1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="game_board mainsection">
+                <div class="game_board_wrapper">
+
+                </div>
+                <div class="loader memory_opacity">
+                    <div class="loader_box">
+                        <p>Get ready...</p>
+                        <img src="images/loader.gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Game Memory -->
+    </div>
+</div>
+<div class="container_main">
+    <div class="bg_color leaderboard_cloud">
+        <div class="bgImg">
+            <div class="cloud-top"></div>
+            <div class="cloud_img">
+                <img class="cloud" src="images/Cloud.png" alt="Cloud">
+                <img class="cloud_mobile" src="images/Cloud-Mobile.png" alt="Cloud">
+            </div>
+            <div class="score_board leaderboard_score">
+                <div class="score_board_left">
+                    <div class="leaderboard_heading">
+                        <h6>Leaderboard</h6>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Leadership Board -->
+            <div id="leaderboard" class="mainsection">
+                <div class="loaderTwo memory_opacity">
+                    <div class="loader_box">
+                        <p>Get ready...</p>
+                        <img src="images/loader.gif">
+                    </div>
+                </div>
+                <div class="game_intro_box">
+                    <div class="tabs">
+                        <ul class="tabs-nav">
+                            <li >Your Score</li>
+                            <li class="Show">Beer Style</li>
+                        </ul>
+                        <div id="tab-1">
+                            <div class="game_intro_box_container" id="screBoard">
+                                <div class="game_box_table_content">
+                                </div>
+                            </div>
+
+                            <div class="leaderboard_button">
+                                <a href="./" class="game_button playAgain w-100 btn_bg">Play Again</a>
+                            </div>
+                            <div class="leaderboard_button shop_now">
+                                <a href="./" target="_blank" class="game_button w-100 shop btn_bg">Explore Our Beers</a>
+                            </div>
+                        </div>
+                        <div id="tab-2">
+                            <div class="game_intro_box_container" id="screBoard">
+                                <div class="game_box_table_content">
+
+                                </div>
+                            </div>
+
+                            <div class="leaderboard_button">
+                                <a href="./" class="game_button playAgain w-100 btn_bg">Play Again</a>
+                            </div>
+                            <div class="leaderboard_button shop_now">
+                                <a href="./" class="game_button w-100 shop btn_bg">Explore Our Beers</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Leadership Board -->
+        </div>
+        <!-- End Game Memory -->
+    </div>
+</div>
+<script src="js/crypto.js" ></script>
+<script src="js/moment.js" ></script>
+<script>
+var scriptUrl = 'dist/primary.bundle.js?' + Math.random() * 50000;
+var scriptElement = document.createElement('script');
+scriptElement.src = scriptUrl;
+document.head.appendChild(scriptElement);
+</script>
+
+</body>
+</html>

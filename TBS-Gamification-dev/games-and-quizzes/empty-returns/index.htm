@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TBS - Gamification </title>
+    <link rel="icon" href="https://www.thebeerstore.ca/wp-content/uploads/2019/04/fav-icon.jpg" sizes="32x32">
+    <link rel="stylesheet" href="css/style.css?v=hkjhkjhkjg">
+    <!-- Google Tag Manager -->
+    <script >
+        var scriptUrl = 'dist/gmtTag.bundle.js?' + Math.random() * 50000;
+         var scriptElement = document.createElement('script');
+         scriptElement.src = scriptUrl;
+         document.head.appendChild(scriptElement);
+     </script>
+    <!-- End Google Tag Manager -->
+    
+
+</head>
+
+<body class="bg_color">
+
+   
+        
+
+    <div class="container_main">
+        <div class="bg_color">
+            <div class="bgImg">
+                <div class="cloud_img">
+                    <img src="images/Cloud_bar.png" alt="Cloud">
+                </div>
+                <div class="score_board-section">
+                    <div class="score_board">
+                        <div class="score_board_left">
+                            <div id="back">
+                                <a href="" class="back">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- home -->
+                <div class="play_container">
+                    <div class="empty_logo">
+                        <img src="images/empty_returns.svg">
+                    </div>
+                    <div class="empty_logo_box">
+                        <div class="empty_logo_text">
+
+                            <h1>Empty <br>
+                                Returns </h1>
+
+                            <h6>Sort in 60 Seconds</h6>
+                        </div>
+
+                        <button id="game_button" class="game_button playgame">
+                            Play Now
+                        </button>
+
+                        <div class="game_link" id="howtoplay">
+                            <a>How To Play </a>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- end home -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container_main">
+
+        <div class="bg_color_light">
+
+            <div class="draggable-items" id="game-container">
+
+            </div>
+
+            <!-- start game -->
+
+            <audio id="myAudio">
+                <source src="gamemusic-6082.mp3" type="audio/mpeg">
+
+            </audio>
+            <div class="game_start">
+                <div class="scorecard_main">
+                    <div class="scorecard_container">
+                        <div class="score_time">
+                            <div class="score_btn" id="scoreTimer">
+                                <img src="images/time_old.svg" alt="time" id="timeimg">
+                                <div>
+                                    <span>Time</span>
+                                    <span class="orange" id="timer-value">60</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="score_strikes">
+
+                            <div class="score_btn score_btn_black">
+                                <span>Score</span>
+                                <span class="orange" id="score-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bin_main_container">
+
+                    <div class="bin_container">
+                        <div class="flex_container">
+                            <div class="bin_image ">
+                                <div class="bin_part_main">
+                                    <div class="bin_top_part">
+                                        <img src="images/back.svg">
+                                    </div>
+                                    <div class="bin_bottom_part">
+                                        <img class="droppable  buble_box bin" id="coloured-glass"
+                                            src="images/greenbox.svg">
+                                    </div>
+                                </div>
+                                <div class="line1" data-bin="coloured-glass">
+                                </div>
+                            </div>
+                            <div class="bin_image ">
+                                <div class="bin_part_main">
+                                    <div class="bin_top_part">
+                                        <img src="images/back.svg">
+                                    </div>
+                                    <div class="bin_bottom_part">
+                                        <img class="droppable  buble_box bin" id="alumunium-cans"
+                                            src="images/alumnium-front.svg">
+                                    </div>
+                                </div>
+                                <div class="line1" data-bin="alumunium-cans">
+                                </div>
+                            </div>
+                            <div class="bin_image ">
+                                <div class="bin_part_main">
+                                    <div class="bin_top_part">
+                                        <img src="images/back.svg">
+                                    </div>
+                                    <div class="bin_bottom_part">
+                                        <img class="droppable  buble_box bin" id="clear-glass"
+                                            src="images/clear-glass-front.svg">
+                                    </div>
+                                </div>
+                                <div class="line1" data-bin="clear-glass">
+                                </div>
+                            </div>
+
+                            <div class="bin_image ">
+                                <div class="bin_part_main">
+                                    <div class="bin_top_part">
+                                        <img src="images/back.svg">
+                                    </div>
+                                    <div class="bin_bottom_part">
+                                        <img class="droppable  buble_box bin" id="others-material"
+                                            src="images/other-material-front.svg">
+                                    </div>
+                                </div>
+                                <div class="line1" data-bin="others-material">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div>
+                        </div>
+
+                    </div>
+                    <div class="roll_bottom_img">
+                        <img src="images/roll.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end game -->
+
+
+    <!-- popup -->
+
+
+    <!-- form popup -->
+    <div class="empty_popup empty_opacity" id="emptyForm" style="display:none;">
+        <div class="game_intro_box">
+            <a href="./" class="close"><img src="images/close-icon.svg"></a>
+            <div class="game_intro_box_container">
+                <div class="game_box_heading">
+                    <h6>Empty Returns </h6>
+                </div>
+                <div class="game_box_discription">
+                    <p class="thankYou">Thank you for playing our Empty Returns. For Ice cold deals, exciting contests,
+                        beer infused recipes and the latest on all-things beer, straight to your inbox. Sign up for our
+                        weekly newsletter today!</p>
+                </div>
+                <div class="empty_form">
+                    <div class="w-50 pr-12 input-section">
+                        <input type="text" id="fname" name="fname" placeholder="First Name">
+                        <span id="fnameError" class="error-message"></span>
+                    </div>
+                    <div class="w-50 pl-12 input-section">
+                        <input type="text" id="lname" name="lname" placeholder="Last Name">
+                        <span id="lnameError" class="error-message"></span>
+                    </div>
+                    <div class="w-100 input-section">
+                        <input type="email" id="email" name="email" placeholder="Enter your email Address">
+                        <span id="emailError" class="error-message"></span>
+                    </div>
+                </div>
+
+                <div class="above_19_checkbox empty_checkbox">
+                    <input type="checkbox" id="above_19">
+                    <label for="above_19">Yes, I am over the age of 19.</label>
+                    <span id="above_19_error" class="error-message"></span>
+                </div>
+                <div class="empty_checkbox">
+                    <input type="checkbox" id="empty_subscribe_newsletter">
+                    <label for="empty_subscribe_newsletter"> I agree to receive electronic messages from The Beer Store
+                        containing information and offers with respect to products that may be of interest to me,
+                        including notification of sales, special events and store promotions. I may withdraw this
+                        consent at any time by selecting the unsubscribe option.</label>
+                    <span id="empty_subscribe_newsletterError" class="error-message"></span>
+                </div>
+
+
+                <button class="game_button w-100  submit">
+                    Submit your score
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <!-- end form popup -->
+    <!-- intro -->
+    <div class="container_main">
+        <div class="bg_color">
+            <div class="bgImg">
+                <div class="cloud_img">
+                    <img src="images/Cloud_new.png" alt="Cloud">
+                </div>
+
+                <!-- leaderboard -->
+
+                <div class="empty_popup" id="leaderboard">
+
+                    <!-- end lead -->
+                    <div id="loader"><img src="images/loading-gif.gif"></div>
+                    <div class="game_intro_box">
+
+                        <div class="game_intro_box_container" id="screBoard">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end leaderboard -->
+        </div>
+    </div>
+    <div class="empty_popup" id="intro" style="display:none;">
+        <div class="game_intro_box">
+            <a  class="close"><img src="images/close-icon.svg"></a>
+            <div class="game_intro_box_container">
+                <div class="game_box_heading">
+                    <h6>Instructions </h6>
+                </div>
+                <div class="rowFlex">
+                    <div class="intro_colum">
+                        <div class="intro_img">
+                            <img src="images/intro_time.svg" alt="time">
+                            <span class="intro_num">1</span>
+
+                        </div>
+                        <div class="intro_text">
+                            <p>Players have 60 seconds to accurately sort a variety of Empty Alcohol Containers that
+                                fall
+                                from the top of the screen (Beer bottles, wine and spirits, cans and other
+                                materials).
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="intro_colum">
+                        <div class="intro_img">
+                            <img src="images/intro_drag.svg" alt="time">
+                            <span class="intro_num">2</span>
+
+                        </div>
+                        <div class="intro_text">
+                            <p>Players must “drag” the containers into the appropriate bins at the bottom of the
+                                screen
+                                to earn points. Each item that goes in the correct bin is 1 point.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="intro_colum">
+                        <div class="intro_img">
+                            <img src="images/intro_bottel.svg" alt="time">
+                            <span class="intro_num">3</span>
+
+                        </div>
+                        <div class="intro_text">
+                            <p>As time goes on the speed and number of items dropping increases. The game concludes
+                                when
+                                the time runs out.</p>
+                        </div>
+
+                    </div>
+                </div>
+                <button class="game_button w-100 playgame">
+                    Play Now
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+   <script src="js/crypto.js" ></script>
+   <script src="js/moment.js" ></script>
+   <script >
+   var scriptUrl = 'dist/primary.bundle.js?' + Math.random() * 50000;
+    var scriptElement = document.createElement('script');
+    scriptElement.src = scriptUrl;
+    document.head.appendChild(scriptElement);
+</script>
+
+</body>
+
+</html>

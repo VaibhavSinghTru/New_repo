@@ -1,0 +1,24 @@
+    @media screen and (max-width: 767px) and (max-height: 700px) {
+    .play_container {
+        margin-top: -25%!important;
+    }
+    .cloud_img {
+        top: 0px !important;
+    }
+}
+@media screen and (max-width: 767px) and (min-height: 700px) and (max-height: 810px) {
+    .play_container {
+        margin-top: 5%!important;
+    }
+    .memory_logo_text h1 {
+        text-shadow: 2px 5px 0px #D06F1A;
+    }
+    .cloud_img {
+        top: 0px !important;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) and (max-height: 400px) and (orientation: landscape){
+.cloud_img {
+    top: 0px !important;
+}
+}

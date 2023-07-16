@@ -1,0 +1,1667 @@
+*,
+:after,
+:before {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --doc-height: 100%;
+    --doc-width: 100%;
+}
+
+/* fonts */
+@font-face {
+    font-family: "Gotham-Bold";
+    src: url("../fonts/Gotham-Bold.eot");
+    src: url("../fonts/Gotham-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff"), url("../fonts/Gotham-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gotham-Book";
+    src: url("../fonts/Gotham-Book.eot");
+    src: url("../fonts/Gotham-Book.eot?#iefix") format("embedded-opentype"), url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff"), url("../fonts/Gotham-Book.ttf") format("truetype");
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'fredokabold';
+    src: url('../fonts/fredoka/fredoka-bold.woff2') format('woff2'),
+        url('../fonts/fredoka/fredoka-bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.container_main {
+
+    max-width: 1920px;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+
+body {
+    touch-action: manipulation;
+}
+
+.orange {
+    color: #D06F1A;
+}
+
+.yellow {
+    color: #F3B232;
+}
+
+.btn_bg {
+    transition: all 0.3s;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.btn_bg {
+    overflow: hidden;
+}
+
+.btn_bg::before,
+.btn_bg::after {
+    content: '' !important;
+    position: absolute !important;
+    z-index: -1;
+    top: 0 !important;
+    right: 0 !important;
+}
+a{
+    cursor: pointer;
+}
+.btn_bg::before,
+.btn_bg::after {
+    background: #fff;
+}
+
+.btn_bg::after {
+    height: 110%;
+    left: -60%;
+    top: -2px;
+    bottom: -2px;
+    transform: skew(50deg);
+    transition-duration: 0.6s;
+    transform-origin: top left;
+    width: 0;
+}
+
+.btn_bg:hover:after {
+    width: 200%;
+}
+
+.error-message {
+    color: red;
+    position: relative;
+    bottom: 12px;
+    font-size: 12px;
+    line-height: 20px;
+    font-family: "Gotham-Book";
+    width: 100%;
+}
+
+span#above_19_error.error-message {
+    bottom: -9px;
+}
+
+.bg_color {
+    background-image: linear-gradient(180deg, #FFE170 -13.61%, #F5BC0B 30.43%, #EFAE3F 68.63%, #E08727 92.39%, #E08727 102.88%);
+    position: relative;
+    height: 100vh;
+    height: var(--doc-height);
+
+}
+
+.bg_color_light {
+    background: linear-gradient(180deg, #FFFFFF -13.61%, #FFE49E 68.06%, #FFC659 110.84%);
+    position: relative;
+    height: 100vh;
+    height: var(--doc-height);
+
+}
+
+.bgImg {
+    background-image: url('../images/Bubble.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.cloud_img {
+    position: relative;
+    pointer-events: none;
+}
+
+.loader_box {
+    background-color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+    width: 345px;
+    border-radius: 15px;
+    position: absolute;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.05);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+}
+
+.loader_box p {
+    color: #000;
+    font-size: 16px;
+    line-height: 1.2;
+    font-family: 'Gotham-Bold';
+    margin-bottom: 30px;
+}
+
+.loader_box img {
+    width: 64px;
+    height: 96px;
+}
+
+/* home */
+
+.play_container {
+    text-align: center;
+    max-width: 530px;
+    margin: auto;
+    padding: 0 25px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.memory_logo_text h1 {
+    font-size: 96px;
+    line-height: 1;
+    font-family: 'fredokabold';
+    text-transform: uppercase;
+    text-shadow: 8px 8px 0px #D06F1A;
+    ;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    margin: 24px 0;
+}
+
+.memory_logo_text h6 {
+    color: #000;
+    font-size: 24px;
+    line-height: 1.2;
+    font-family: 'Gotham-Bold';
+    margin-bottom: 24px;
+}
+
+.memory_logo_text p {
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: 'Gotham-Book';
+    margin-bottom: 24px;
+}
+
+.game_button {
+    background: #000000;
+    border-radius: 5px;
+    color: #FFFFFF;
+    outline: none;
+    border: none;
+    padding: 14px 18px;
+    font-family: 'Gotham-Bold';
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid #000000;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.game_button:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.game_link {
+    text-align: center;
+}
+
+.game_link a {
+    color: #000000;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Gotham-Book';
+
+}
+
+.game_link a:hover {
+    text-decoration: none;
+}
+
+.game_board {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.game_board_wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 48.906vw;
+    position: relative;
+}
+
+.home .score_board-section .score_board_desktop {
+    display: flex;
+    margin-top: 30px;
+}
+
+.home .score_board-section .score_board_desktop .time_btn a {
+    text-decoration: none;
+    color: #000;
+}
+
+/************* Game **********************/
+.score_board-section {
+    z-index: 2;
+    width: 100%;
+    position: absolute;
+    z-index: 9;
+    top: 0;
+}
+
+.score_board-section .score_board_mobile {
+    display: none;
+}
+
+.score_board {
+    justify-content: space-between;
+    display: flex;
+    max-width: 1713px;
+    margin: auto;
+    padding: 0 45px;
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    top: 0;
+}
+
+.score_board.leaderboard_score {
+    position: absolute;
+}
+
+.score_board_right {
+    display: flex;
+}
+
+.score_board .time_btn,
+.score_board .score_btn,
+.score_board .label_btn {
+    background: #FFFFFF;
+    border-radius: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 43px;
+    gap: 10px;
+    border-style: none;
+    outline: none;
+    font-family: 'Gotham-Bold';
+    width: auto;
+    font-size: 24px;
+    line-height: 1.2;
+    box-shadow: 0px 5px 0px #F3E9D8;
+}
+
+.score_board .score_btn {
+    background: #000;
+    color: #fff;
+}
+
+.score_board .time_btn img {
+    width: 18px;
+    height: 32px;
+}
+
+.score_board .label_btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.score_btn {
+    margin-right: 20px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.6s ease 0s;
+    transform-style: preserve-3d;
+    position: relative;
+    display: table;
+}
+
+.card_container {
+    width: 9.479vw;
+    height: 9.688vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3px;
+    border-radius: 15px;
+}
+
+.card_front,
+.card_back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: all 0.3s ease 0s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.card_back {
+    cursor: pointer;
+    background-color: #000000;
+    background-image: url("../images/TBS_Logo.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    visibility: visible;
+    transform: rotateY(0deg);
+    background-size: 3.6vw;
+}
+
+.card_front {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    word-wrap: break-word;
+    word-break: break-all;
+    transform: rotateY(-180deg);
+}
+
+.card_container.active .card_back {
+    transform: rotateY(180deg);
+}
+
+.card_container.active .card_front {
+    transform: rotateY(0deg);
+    background-color: #fff;
+}
+
+.popupScore {
+    color: #ffffff;
+    font-size: 8px;
+    line-height: 10px;
+    font-family: 'Gotham-Book';
+    border-radius: 50px;
+    padding: 6px;
+    text-align: center;
+    border-width: 4px;
+    border-style: solid;
+}
+
+.scale-animation {
+    animation: scale 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes scale {
+    0% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+
+    50% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+/************* Game **********************/
+/************* Popup Form **********************/
+.memory_opacity {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    z-index: 1001;
+    max-height: var(--doc-height);
+    height: var(--doc-height);
+}
+
+.game_intro_box {
+    background-color: #FFFFFF;
+    max-width: 530px;
+    margin: auto;
+    padding: 40px 30px;
+    position: absolute;
+    bottom: 108px;
+    left: 0;
+    right: 0;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    bottom: inherit;
+    right: inherit;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+}
+.memory_opacity .game_intro_box {
+    overflow: hidden;
+    padding-right: 0;
+}
+.memory_opacity .game_intro_box_container{
+    max-height: 71vh;
+    overflow-x: auto;
+    padding-right: 30px;
+}
+.memory_popup .close {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+}
+
+.memory_popup .game_box_image {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.memory_form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.memory_form .input-section:first-child {
+    padding-right: 24px;
+
+}
+
+.memory_form input {
+    padding: 13px 20px;
+    color: #4A4F55;
+    font-family: "Gotham-Book";
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    height: 50px;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 24px;
+    width: 100%;
+    outline: none;
+}
+
+.game_box_heading h6 {
+    font-family: 'Gotham-Bold';
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+.game_box_discription P{ 
+    font-size: 14px;
+    line-height: 20px;
+    font-family: "Gotham-Book";
+    margin-bottom: 30px;
+    text-align: center;
+    color: #4B4F54;
+}
+
+.memory_checkbox {
+    margin-bottom: 14px;
+    position: relative;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.memory_checkbox input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    left: 0;
+    margin: 0;
+    height: 16px;
+    width: 16px;
+    top: 0px;
+}
+
+.memory_checkbox label {
+    font-size: 14px;
+    color: #4B4F54;
+    line-height: 20px;
+    position: relative;
+    padding-left: 33px;
+    font-family: "Gotham-Book";
+}
+
+.memory_checkbox label:before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border: 1px solid #D6D6D6;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.memory_checkbox label:after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.memory_checkbox input[type=checkbox]:checked~label:before {
+    background: #000000;
+    border-color: #000000;
+}
+
+.memory_checkbox input[type=checkbox]:checked~label:after {
+    display: block;
+}
+
+.game_button.submit {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    background-color: #F4B233;
+    color: #000;
+    border-color: #F4B233;
+}
+.rule_regulation {
+    margin-top: 30px;
+}
+
+.rule_regulation p {
+    color: #4B4F54;
+    font-family: "Gotham-Book";
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.rule_regulation p a {
+    color: #D06F1A;
+}
+
+/*************End Popup Form **********************/
+
+
+
+/*************Leadershipboard **********************/
+#leaderboard .game_intro_box {
+    width: 530px;
+    padding: 0;
+}
+
+#tab-2 {
+    display: none;
+}
+
+#leaderboard .game_intro_box ul {
+    padding: 0;
+    display: flex;
+}
+
+#leaderboard .game_intro_box li {
+    width: 50%;
+    text-align: center;
+    list-style-type: none;
+    padding: 20px 0;
+    font-family: 'Gotham-Bold';
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#leaderboard .game_intro_box .Show {
+    background-color: #FDF3E0;
+}
+
+#leaderboard .game_box_table_content {
+    padding: 32px 20px;
+}
+
+#leaderboard .leaderboard_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.leaderboard_active .leaderboard_box {
+    background: #F3B232;
+}
+
+#leaderboard .leaderboard_active.leaderboard_current_rank .intro_num {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+#leaderboard .leaderboard_active.leaderboard_current_rank {
+    margin-top: 0px;
+}
+
+.leaderboard_name {
+    display: flex;
+    align-items: center;
+}
+
+.leaderboard_box p {
+    font-family: 'Gotham-Bold';
+    font-size: 24px;
+}
+
+.leaderboard_box p a {
+    padding-left: 20px;
+}
+
+#leaderboard .intro_num {
+    position: relative;
+    top: 0;
+    left: 0px;
+    margin-right: 20px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 100px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gotham-Bold';
+    line-height: 0;
+    font-size: 16px;
+}
+
+.leaderboard_main_list {
+    border-bottom: 1px solid #ccc;
+}
+
+#leaderboard .leaderboard_current_rank {
+    background: #FDF3E0;
+    border-radius: 10px;
+    border: 0;
+    margin-top: 32px;
+}
+
+#leaderboard .leaderboard_current_rank .intro_num {
+    background-color: #F3B232;
+    color: #000;
+}
+
+#leaderboard .leaderboard_current_rank {
+    margin-top: 16px;
+}
+
+
+.leaderboard_score .score_board_right {
+    display: block;
+}
+
+.leaderboard_score .score_board_right .label_btn {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    font-size: 16px;
+    justify-content: start;
+}
+
+.leaderboard_score .score_board_left .leaderboard_heading h6 {
+    font-size: 40px;
+    line-height: 1.2;
+    font-family: 'Gotham-Bold';
+}
+
+.leaderboard_score .score_board_right .leaderboard_heading h6 {
+    font-size: 24px;
+    line-height: 1.2;
+    font-family: 'Gotham-Bold';
+    padding-bottom: 12px;
+}
+
+#leaderboard .game_intro_box {
+    transform: translate(-50%, -30%);
+}
+
+.cloud_mobile {
+    display: none;
+}
+
+.score_board-section h2 {
+    display: none;
+}
+
+#leaderboard .leaderboard_button {
+    margin: 0px 20px;
+}
+
+#leaderboard .leaderboard_button .game_button {
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+    padding: 15px 18px;
+}
+
+.shop_now a {
+    background-color: #F4B233;
+    border: 2px solid #F4B233;
+    color: #000;
+}
+
+.shop_now a:hover {
+    border: 2px solid #000000;
+}
+
+/*************End Leadershipboard **********************/
+
+
+
+/*************How to play **********************/
+#intro .intro_box {
+    background-color: #FFFFFF;
+    margin: auto;
+    padding: 40px 0px;
+    border-radius: 20px;
+    overflow: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    height: auto;
+    max-width: 591px;
+}
+
+#intro .game_intro_box_container {
+    padding: 0px 20px;
+}
+
+#intro .game_box_heading h6 {
+    font-family: 'Gotham-Bold';
+    font-size: 24px;
+    text-align: center;
+}
+
+#intro .rowFlex {
+    padding-left: 15px;
+}
+
+#intro .intro_colum {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+#intro .intro_img {
+    width: 15%;
+    position: relative;
+    margin-right: 24px;
+}
+
+#intro .intro_num {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 100px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gotham-Bold';
+    line-height: 0;
+    position: absolute;
+    top: -15px;
+    left: -14px;
+    font-size: 16px;
+}
+
+#intro .intro_text {
+    width: 80%;
+}
+
+#intro .intro_text p {
+    font-size: 14px;
+    line-height: 1.43;
+    color: #000000;
+    font-family: "Gotham-Book";
+    text-align: left;
+}
+
+a.close {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+}
+
+#intro .game_button {
+    margin-bottom: 0px;
+}
+
+#howtoplay {
+    cursor: pointer;
+   
+    border-bottom: 1px solid #000;
+}
+
+/*************End How to play **********************/
+
+@media screen and (max-width: 991px) and (orientation: landscape) {
+    .bg_color {
+        height: 100vw;
+    }
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+
+    .memory_opacity {
+        height: 100% !important;
+        max-height: 100% !important;
+    }
+
+    .bgImg {
+        height: 100vw;
+    }
+
+    .empty_opacity {
+        overflow: hidden;
+        max-height: var(--doc-height);
+        height: var(--doc-height);
+
+    }
+
+    .score_board .time_btn,
+    .score_board .score_btn,
+    .score_board .label_btn {
+        padding: 10px 10px !important;
+        font-size: 10px !important;
+    }
+
+    #leaderboard .game_intro_box div#tab-1,
+    #leaderboard .game_intro_box div#tab-2 {
+        height: 100vh !important;
+    }
+
+    #leaderboard .game_intro_box {
+        margin-top: 0% !important;
+    }
+    body .cloud_img {
+        top: 0px !important;
+    }
+    body .game_board_wrapper {
+        max-width: 350px;
+    }
+    body .leaderboard_cloud .cloud_img {
+        top: 0% !important;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .cloud_img {
+        top: -80px !important;
+    }
+
+    .leaderboard_cloud .cloud_img {
+        top: -170px !important;
+    }
+
+    .card_container {
+        width: 113px;
+        height: 123px;
+    }
+
+    .memory_popup .game_intro_box {
+        height: auto;
+    }
+
+    .leaderboard_cloud #leaderboard .game_intro_box {
+        height: auto;
+        margin-top: 0% !important;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1365.98px) {
+    .play_container {
+        margin-top: -13% !important;
+    }
+
+    .memory_logo_text h1 {
+        font-size: 40px;
+        margin: 0 0 15px;
+        text-shadow: 3px 5px 0px #D06F1A;
+    }
+
+    #leaderboard .game_intro_box div#tab-1,
+    #leaderboard .game_intro_box div#tab-2 {
+        height: 60vh;
+        overflow-y: scroll;
+    }
+
+    .memory_logo_text h1 br {
+        display: none;
+    }
+
+    .memory_logo img {
+        width: 113px;
+        height: 123px;
+    }
+
+    .memory_logo_text h6,
+    .memory_logo_text p,
+    .game_button {
+        margin-bottom: 15px;
+    }
+
+    .memory_popup .game_intro_box {
+        height: auto;
+    }
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1365.98px) and (max-height: 810px) {
+    .play_container {
+        margin-top: -11% !important;
+    }
+
+    .home .cloud_img {
+        top: -80px !important;
+    }
+
+    .cloud_img {
+        top: -40px !important;
+    }
+
+    .leaderboard_cloud .cloud_img {
+        top: -80px !important;
+    }
+
+    .leaderboard_cloud #leaderboard .game_intro_box div#tab-1,
+    .leaderboard_cloud #leaderboard .game_intro_box div#tab-2 {
+        height: 48vh;
+        overflow-y: scroll;
+    }
+
+    #leaderboard .game_intro_box {
+        transform: translate(-50%, -30%);
+    }
+
+    /* .memory_popup .game_intro_box {
+        height: 90%;
+    } */
+
+    .game_board_wrapper {
+        max-width: 35.906vw;
+    }
+
+    .card_back {
+        background-size: 2.6vw;
+    }
+
+    .card_container {
+        width: 7.479vw;
+        height: 7.688vw;
+    }
+
+    .game_board {
+        margin-top: -13% !important;
+    }
+
+    .score_board .time_btn,
+    .score_board .score_btn,
+    .score_board .label_btn {
+        padding: 16px 20px;
+        font-size: 14px;
+    }
+
+    .score_board .time_btn img {
+        width: 10px;
+        height: 12px;
+    }
+
+    .score_board .label_btn img {
+        width: 16px;
+        height: 16px;
+    }
+
+    #intro .intro_box {
+        height: 65%;
+    }
+
+    #intro .game_intro_box_container {
+        padding: 0px 20px;
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+}
+
+@media screen and (min-width: 992px) and (max-width: 1080px) and (max-height: 810px) {
+
+    .leaderboard_cloud #leaderboard .game_intro_box div#tab-1,
+    .leaderboard_cloud #leaderboard .game_intro_box div#tab-2 {
+        height: 50vh;
+    }
+
+    .card_container {
+        width: 103px;
+        height: 113px;
+    }
+
+    .game_board_wrapper {
+        max-width: 500px;
+    }
+
+}
+@media screen and (min-width: 1231.98px) and (max-width: 1280px) and (max-height: 720px) {
+    .play_container, .game_board {
+        margin-top: -9% !important;
+    }
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1679.98px) {
+    .play_container {
+        margin-top: -6% !important;
+    }
+
+
+
+    .memory_logo_text h1 {
+        font-size: 40px;
+        margin: 15px 0;
+        text-shadow: 2px 6px 0px #D06F1A;
+    }
+
+    .memory_logo_text h1 br {
+        display: none;
+    }
+
+    #leaderboard .game_intro_box div#tab-1,
+    #leaderboard .game_intro_box div#tab-2 {
+        height: 53vh;
+        overflow-y: scroll;
+    }
+
+    .memory_logo img {
+        width: 133px;
+        height: 143px;
+    }
+
+    .cloud_img {
+        top: -60px;
+    }
+
+    score_board .time_btn,
+    .score_board .score_btn,
+    .score_board .label_btn {
+        padding: 10px 35px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1679.98px) and (max-height: 900px) {
+    #intro .intro_box {
+        height: 65%;
+    }
+    #intro .game_intro_box_container {
+        padding: 0px 20px;
+        height: 100%;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (min-width: 1680px) {
+
+    .play_container,
+    .game_board {
+        margin-top: -3% !important;
+    }
+
+    #leaderboard .game_intro_box div#tab-1,
+    #leaderboard .game_intro_box div#tab-2 {
+        height: 60vh;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (min-width: 1920.98px) {
+    .game_board_wrapper {
+        max-width: 995px;
+    }
+
+    .card_container {
+        width: 195px;
+        height: 200px;
+    }
+
+    .card_back {
+        background-size: 65px;
+    }
+
+    .container_main {
+        max-width: 100%;
+    }
+
+    .cloud_img img {
+        width: 100%;
+    }
+
+    #leaderboard .game_intro_box div#tab-1,
+    #leaderboard .game_intro_box div#tab-2 {
+        height: auto;
+        overflow-y: initial;
+    }
+    .play_container, .game_board { 
+    top: 60%!important;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    height: 100%!important;
+    margin-top: revert!important;
+    position: absolute;
+    left: 50%;
+    right: auto;
+    }
+}
+@media screen and (min-width: 1680px) and (max-height: 1050px) {
+    .memory_logo img {
+        width: 156px;
+        height: 136px;
+    }
+
+    .play_container,
+    .game_board {
+        margin-top: -5% !important;
+    }
+
+    /* .game_intro_box_container{
+        height: 50vh;
+        overflow-y: scroll;
+    } */
+    /* #intro {
+        margin-top: -5% !important;
+    } */
+    
+
+    #intro .intro_box {
+        height: 65%;
+    }
+    #intro .game_intro_box_container {
+        padding: 0px 20px;
+        height: 100%;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (min-width: 1680px) and (max-height: 1080px) {
+
+    .play_container,
+    .game_board {
+        margin-top: -5% !important;
+    }
+}
+
+@media only screen and (max-width: 991px) and (max-height: 750px) {
+    .memory_logo_text h1 {
+        font-size: 38px;
+        text-shadow: 2px 5px 0px #D06F1A;
+    }
+
+    .memory_logo_text h1 br {
+        display: none;
+    }
+
+    .memory_logo img {
+        width: 116px;
+        height: 96px;
+    }
+
+    .card_container {
+        width: 85px;
+        height: 95px;
+    }
+
+    .game_board_wrapper {
+        max-width: 360px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .bgImg {
+        background-image: url('../images/Bubble-mobile.png');
+    }
+
+    .cloud {
+        display: none;
+    }
+
+    .cloud_mobile {
+        display: block;
+        width: 100%;
+    }
+
+    .cloud_img {
+        width: 100%;
+    }
+
+    .score_btn {
+        margin-right: 0;
+    }
+
+    .score_board-section .score_board_desktop {
+        display: none;
+    }
+
+    .score_board-section .score_board_mobile {
+        display: flex;
+    }
+
+    .score_board-section h2 {
+        display: block;
+        padding: 22px 0;
+        text-align: center;
+        font-family: 'Gotham-Bold';
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .score_board-section .score_board {
+        margin-top: 0px;
+        padding: 0 15px;
+    }
+
+    .score_board .time_btn,
+    .score_board .score_btn,
+    .score_board .label_btn {
+        padding: 16px 20px;
+        font-size: 14px;
+    }
+
+    .score_board .time_btn img {
+        width: 10px;
+        height: 12px;
+    }
+
+    .score_board .label_btn img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .card_back {
+        background-size: 35px;
+    }
+
+    .game_board_wrapper {
+        max-width: 480px;
+    }
+
+    .cloud_img {
+        z-index: 0;
+    }
+
+    .leaderboard_cloud .cloud_img {
+        z-index: 0;
+        top: -30px;
+    }
+
+    .memory_logo_text h1 {
+        font-size: 50px;
+    }
+
+    .memory_logo img {
+        width: 126px;
+        height: 106px;
+    }
+
+    .game_intro_box {
+        padding: 40px 20px;
+        width: 90%;
+     
+    }
+
+    #leaderboard .game_intro_box {
+        height: auto;
+    }
+
+    #leaderboard .game_intro_box {
+        width: 93%;
+        /* overflow: scroll; */
+        margin-top: -10% !important;
+    }
+
+    #leaderboard .game_intro_box li {
+        font-size: 12px;
+    }
+
+    .leaderboard_box p {
+        font-size: 14px;
+    }
+
+    #leaderboard .intro_num {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
+
+    .leaderboard_box p a img {
+        width: 12px;
+        height: 12px;
+    }
+
+    .score_board.leaderboard_score {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .leaderboard_score .score_board_right .label_btn {
+        justify-content: center;
+    }
+
+
+    .leaderboard_score .score_board_right .leaderboard_heading h6 {
+        padding-bottom: 20px;
+    }
+
+    .leaderboard_score .score_board_right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .leaderboard_score .score_board_left .leaderboard_heading h6 {
+        font-size: 24px;
+    }
+
+    .loader_box {
+        padding: 15px 20px;
+        width: 140px;
+    }
+
+    .loader_box img {
+        width: 50px;
+        height: 80px;
+    }
+
+    .loader_box p {
+        margin-bottom: 15px;
+    }
+
+    .home .score_board-section .score_board_desktop .time_btn a {
+        padding: 16px 20px;
+    }
+
+    .leaderboard_cloud .cloud_img {
+        top: -12% !important;
+    }
+
+    #leaderboard .game_intro_box {
+        transform: translate(-50%, -40%);
+    }
+
+    .game_board {
+        margin-top: -10% !important;
+    }
+
+    #intro {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #intro .intro_box {
+        background-color: #FFFFFF;
+        margin: auto;
+        padding: 40px 0px;
+        border-radius: 20px;
+        overflow: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        height: 75%;
+        width: 90%;
+    }
+
+    #intro .game_intro_box_container {
+        height: 100%;
+        padding: 0px 20px;
+        overflow: scroll;
+    }
+
+    #intro .intro_colum {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    #intro .intro_img {
+        margin: 0 auto;
+        width: 80px;
+    }
+
+    #intro .intro_text {
+        width: 100%;
+    }
+
+    .game_box_heading h6 {
+        margin-bottom: 45px;
+    }
+    
+#memoryForm .game_box_heading h6 {
+    margin-bottom: 10px;
+}
+
+    #intro .intro_colum {
+        margin-bottom: 40px;
+    }
+
+    #intro .intro_text p {
+        padding-top: 24px;
+        font-size: 12px;
+    }
+
+    #intro .rowFlex {
+        padding-left: 0px;
+    }
+    .game_box_discription p {
+        font-size: 12px;
+        line-height: 1.5;
+        color: #4B4F54;
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+    .play_container {
+        margin-top: -2% !important;
+    }
+
+    #leaderboard .game_intro_box div#tab-1,
+    #leaderboard .game_intro_box div#tab-2 {
+        height: 55vh;
+        overflow-y: scroll;
+    }
+
+    .bgImg {
+        background-size: contain;
+    }
+
+    .home .game_button {
+        width: 100%;
+    }
+
+    .home .bgImg {
+        background-image: url('../images/home-bubble-mobile.png');
+    }
+
+    #leaderboard .game_intro_box {
+        transform: translate(-50%, -30%);
+    }
+}
+
+@media only screen and (max-width: 479.98px) {
+    .score_board-section h2 {
+        padding: 20px 0;
+        font-size: 16px;
+    }
+
+    .score_board .time_btn,
+    .score_board .score_btn,
+    .score_board .label_btn {
+        padding: 11px 13px;
+        font-size: 12px;
+    }
+
+    .score_board .label_btn img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .card_back {
+        background-size: 35px;
+    }
+
+    .card_container {
+        width: 103px;
+        height: 113px;
+    }
+
+    .game_board_wrapper {
+        max-width: 375px;
+    }
+
+    .w-50 {
+        width: 100%;
+    }
+
+    .memory_form .input-section:first-child {
+        padding-right: 0px;
+    }
+
+    .game_button.submit {
+        width: 100%;
+    }
+
+    .leaderboard_box p {
+        font-size: 14px;
+    }
+
+    #leaderboard .game_intro_box li {
+        font-size: 12px;
+    }
+
+    .leaderboard_score .score_board_left .leaderboard_heading h6 {
+        font-size: 16px;
+    }
+
+    .leaderboard_score .score_board_right .leaderboard_heading h6 {
+        font-size: 16px;
+    }
+
+    .leaderboard_score .score_board_right .label_btn {
+        font-size: 12px;
+    }
+
+    .score_board.leaderboard_score {
+        margin-top: 21px;
+    }
+
+    .leaderboard_score .score_board_left {
+        margin-bottom: 0px;
+    }
+
+    .leaderboard_cloud .cloud_img {
+        top: -50px !important;
+    }
+}
+
+@media only screen and (max-width: 374.98px) {
+    .score_board-section h2 {
+        padding: 15px 0;
+        font-size: 14px;
+    }
+
+    .score_board .time_btn,
+    .score_board .score_btn,
+    .score_board .label_btn {
+        padding: 11px 8px;
+        font-size: 11px;
+        gap: 7px;
+    }
+
+    .score_board .label_btn img {
+        width: 13px;
+        height: 13px;
+    }
+
+    .card_back {
+        background-size: 30px;
+    }
+
+    .card_container {
+        width: 95px;
+        height: 105px;
+    }
+
+    .game_board_wrapper {
+        max-width: 100%;
+    }
+
+    .leaderboard_box p {
+        font-size: 13px;
+    }
+
+    .leaderboard_score .score_board_left {
+        margin-bottom: 20px;
+    }
+}
