@@ -1,4 +1,4 @@
-name: New_repo
+name: Node_repo
 
 on:
   push:
@@ -8,49 +8,29 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Create .env file Backend
-        run: |
-          echo "$DEV_ENV" >> ${{ github.workspace }}/.env
-        shell: bash
-        env:
-          DEV_ENV: ${{ secrets.FILE_DEV_ENV }}
+          node-version: 14
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Run build
         run: npm run build
 
-  archive-build-artifacts:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Package
+        run: npm pack
+        env:
+          PACKAGE_NAME: "my-package"
 
-      - name: Create a temp artifact downloads folder
-        run: mkdir downloads
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
-          name: Archive artifact
-          path: downloads/artifact
-          retention-days: 30
-
-      - name: Downloads
-        run: echo "Perform downloads here"
-        # Add your specific download steps here using the artifact downloaded
+          name: ${{ env.PACKAGE_NAME }}
+          path: "*.tgz"
