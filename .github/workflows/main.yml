@@ -2,7 +2,8 @@ name: TBS-Gamification-Dev
 
 on:
   push:
-    branches: [TBS-Gamification-Dev]
+    branches:
+      - TBS-Gamification-Dev
 
 jobs:
   build:
@@ -12,9 +13,11 @@ jobs:
         node-version: [14]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -23,26 +26,31 @@ jobs:
           echo "$DEV_ENV" >> ${{ github.workspace }}/.env
         shell: bash
         env:
-          BACKEND_ENV: ${{secrets.FILE_DEV_ENV}}
-      - run: npm install
-      - run: npm run build --if-present
+          DEV_ENV: ${{ secrets.FILE_DEV_ENV }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build --if-present
+
   hello:
-    runs on: ubuntu-latest
+    runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v3
-      - name: Create A temp artifact downlods folder
-        run: |
-          mkdir downlods
-          ls
-      - name: Upload Artifact GitHub Action
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create a temp artifact downloads folder
+        run: mkdir downloads
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Archieve artifact
-          path: /downlods/artifact
+          name: Archive artifact
+          path: downloads/artifact
           retention-days: 30
+
       - name: Downloads
-        uses: ./
-        with:
-          path: /new/path/artifactname
- 
+        run: echo "Perform downloads here"
+        # Add your specific download steps here using the artifact downloaded
