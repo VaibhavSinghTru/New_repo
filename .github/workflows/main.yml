@@ -26,5 +26,6 @@ jobs:
       shell: bash
       env:
         BACKEND_ENV: ${{secrets.File_Dev}}
-
+    - run: npm install
+    - run: npx webpack --mode production
   
