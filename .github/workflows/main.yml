@@ -46,7 +46,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: Archive artifact
-          path: /home/runner/work/        
+          path: /home/runner/        
   Deployment:
       runs-on: ubuntu-latest
       needs: build 
