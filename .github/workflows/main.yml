@@ -1,9 +1,9 @@
-name: TBS-Gamification
+name: New_repo
 
 on:
   push:
     branches:
-      - dev
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
