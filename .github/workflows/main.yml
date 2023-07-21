@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
-          path: /home/runner/work/TBS-Gamification-dev/
+          path: /home/runner/work/
           retention-days: 30
           
       - name: Download Artifact
