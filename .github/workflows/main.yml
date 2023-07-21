@@ -1,16 +1,15 @@
-name: Node-repo
+name: TBS-Gamification
 
 on:
   push:
     branches:
-      - main
-
+      - dev
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14]
+        node-version: [16.15.0]
 
     steps:
       - name: Checkout code
@@ -23,48 +22,46 @@ jobs:
 
       - name: Create .env file Backend
         run: |
-          echo "$DEV_ENV" >> ${{ github.workspace }}/.env
+          echo "$DEV_ENV" >> ${{ github.workspace }}/games-and-quizzes/empty-returns/.env
         shell: bash
         env:
-          DEV_ENV: ${{ secrets.File_dev }}
+          DEV_ENV: ${{ secrets.ENV_FILE_DEV }}
 
       - name: Install dependencies
-        run: npm install
+        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npm install
 
       - name: Build
-        run: npm run build --if-present
+        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npx webpack --mode production
 
-  archive-build-artifacts:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Create a temp artifact downloads folder
-        run: mkdir downloads
-
+      - name: a file added
+        run: mkdir filearc
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
-          path: downloads/artifact
+          path: /home/runner/work/TBS-Gamification/
           retention-days: 30
-
-  deployment-on-wp:
-    runs-on: ubuntu-latest
-    needs: archive-build-artifacts
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install SSH Client
-        run: sudo apt-get install openssh-client -y
-
-      - name: Deploy Artifact using SFTP
-        run: |
-          sshpass -p ${{ secrets.SFTP_PASSWORD }} sftp -o StrictHostKeyChecking=no -P ${{ secrets.SFTP_PORT }} ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} <<EOF
-          put /source/of/artifact /destination/of/artifact/
-          EOF
+          
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Archive artifact
+          path: /home/runner/work/        
+  Deployment:
+      runs-on: ubuntu-latest
+      needs: build 
+      steps: 
+      - uses: actions/checkout@v3
+      - name: GitHub Action Deploy to WP Engine
+        uses: wpengine/github-action-wpe-site-deploy@v3.1.1
+        with:
+        # Deploy vars 
+          WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
+          WPE_ENV: pluginsuppostg
+          # Deploy Options
+          SRC_PATH: "${{ github.workspace }}/games-and-quizzes/empty-returns"
+          REMOTE_PATH: "wp-content/themes"
+          PHP_LINT: TRUE
+          FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
+          SCRIPT: "path/yourscript.sh"
+          CACHE_CLEAR: TRUE
