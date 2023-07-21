@@ -22,16 +22,16 @@ jobs:
 
       - name: Create .env file Backend
         run: |
-          echo "$DEV_ENV" >> ${{ github.workspace }}/games-and-quizzes/empty-returns/.env
+          echo "$DEV_ENV" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
         shell: bash
         env:
           DEV_ENV: ${{ secrets.ENV_FILE_DEV }}
 
       - name: Install dependencies
-        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npm install
+        run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
 
       - name: Build
-        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npx webpack --mode production
+        run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
 
       - name: a file added
         run: mkdir filearc
@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
-          path: /home/runner/work/TBS-Gamification/
+          path: /home/runner/work/TBS-Gamification-dev/
           retention-days: 30
           
       - name: Download Artifact
@@ -59,7 +59,7 @@ jobs:
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
           WPE_ENV: pluginsuppostg
           # Deploy Options
-          SRC_PATH: "${{ github.workspace }}/games-and-quizzes/empty-returns"
+          SRC_PATH: "${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns"
           REMOTE_PATH: "wp-content/themes"
           PHP_LINT: TRUE
           FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
