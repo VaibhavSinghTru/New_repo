@@ -55,8 +55,8 @@ jobs:
       - name: Start SSH Agent
         run: |
           eval "$(ssh-agent -s)"
-          if [ -f "/github/home/.ssh/WPE_SSHG_KEY_PRIVATE" ]; then
-            ssh-add /github/home/.ssh/WPE_SSHG_KEY_PRIVATE
+          if [ -f "/github/home/.ssh/github_action" ]; then
+            ssh-add /github/home/.ssh/github_action
           else
             echo "Error: Private key file not found."
             exit 1
