@@ -58,7 +58,7 @@ jobs:
         # Deploy vars 
           WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
           WPE_ENV: pluginsuppostg
-          run: chmod 600 /github/home/.ssh/github_action
+          script: chmod 600 /github/home/.ssh/github_action
           # Deploy Options
           SRC_PATH: "${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns"
           REMOTE_PATH: "wp-content/themes"
