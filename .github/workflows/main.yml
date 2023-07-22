@@ -52,24 +52,23 @@ jobs:
       needs: build 
       steps: 
       - uses: actions/checkout@v3
-      - name: Install SSH key
+      - name: GitHub Action Deploy to WP Engine
+        env: # Or as an environment variable
+          WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
+          STAG: pluginsuppostg
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.WPENGINE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          cd $GITHUB_WORKSPACE
+          git checkout $BRANCH_NAME
+          if [ $BRANCH_NAME == "main" ]; then DEPLOY=${STAG}; else exit; fi
+          mkdir ~/.ssh
+          echo $WPE_SSHG_KEY_PRIVATE | base64 --decode >> ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-      - name: Test Internet Connectivity
-        run: ping -c 5 sftp.wpengine.com
-      - name: Check SSH Key Permissions
-        run: ls -l ~/.ssh/id_rsa
-
-      - name: Set up known hosts
-        run: |
-          ssh-keyscan -t rsa sftp.wpengine.com >> ~/.ssh/known_hosts
-
-      - name: Deploy to WP Engine
-        env:
-          WPENGINE_ENV: production
-        run: |
-          echo "Connecting to WP Engine..."
-          git remote add wpengine ssh://git@sftp.wpengine.com/wp-content/themes
-          git push wpengine
+          ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
+          # Deploy Options
+          SRC_PATH: "/home/runner/work/TBS-Gamification/"
+          REMOTE_PATH: "wp-content/themes"
+          PHP_LINT: TRUE
+          FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
+          SCRIPT: "path/yourscript.sh"
+          CACHE_CLEAR: TRUE
