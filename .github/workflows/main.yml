@@ -3,7 +3,7 @@ name: New_repo
 on:
   push:
     branches:
-      - main
+      - niks
 jobs:
   build:
     runs-on: ubuntu-latest
