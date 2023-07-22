@@ -55,7 +55,12 @@ jobs:
       - name: Start SSH Agent
         run: |
           eval "$(ssh-agent -s)"
-          ssh-add /github/home/.ssh/WPE_SSHG_KEY_PRIVATE
+          if [ -f "/github/home/.ssh/WPE_SSHG_KEY_PRIVATE" ]; then
+            ssh-add /github/home/.ssh/WPE_SSHG_KEY_PRIVATE
+          else
+            echo "Error: Private key file not found."
+            exit 1
+          fi
       - name: GitHub Action Deploy to WP Engine
         uses: wpengine/github-action-wpe-site-deploy@v3.1.1
         with:
