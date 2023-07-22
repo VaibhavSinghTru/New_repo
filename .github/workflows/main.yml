@@ -58,11 +58,11 @@ jobs:
         # Deploy vars 
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }} 
           WPE_ENV: pluginsuppostg
-          script: chmod 600 /github/home/.ssh/github_action
+          script: |
+                mkdir ~/.ssh
+                 echo $WP_ENGINE_OPUC_GROUP | base64 --decode >> ~/.ssh/id_rsa
+                 chmod 600 ~/.ssh/id_rsa
+                 ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           SRC_PATH: "${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns"
           REMOTE_PATH: "wp-content/themes"
-          PHP_LINT: TRUE
-          FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
-   #       SCRIPT: "path/yourscript.sh"
-          CACHE_CLEAR: TRUE
