@@ -58,7 +58,7 @@ jobs:
         # Deploy vars 
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }} 
           WPE_ENV: pluginsuppostg
-          script: |
+          run: |
                 mkdir ~/.ssh
                  echo $WP_ENGINE_OPUC_GROUP | base64 --decode >> ~/.ssh/id_rsa
                  chmod 600 ~/.ssh/id_rsa
