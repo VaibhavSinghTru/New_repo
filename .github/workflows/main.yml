@@ -35,12 +35,4 @@ jobs:
           echo $WPE_SSHG_KEY_PRIVATE1 | base64 --decode >> ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
-          sudo rm -R .git
-          git init .
-          git add . --all
-          git config --global user.email "git-actions@tru.agency"
-          git config --global user.name "git-actions"
-          git commit -m "${GITHUB_SHA}"
-          git remote add production git@git.wpengine.com:production/${DEPLOY}.git
-          git remote
-          git push --force production master
+          
