@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16.15.0]
 
     steps:
       - name: Checkout code
@@ -36,17 +36,17 @@ jobs:
       - name: a file added
         run: mkdir filearc
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Archive artifact
-          path: /home/runner/work/
+          path: /
           retention-days: 30
           
       - name: Download Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: Archive artifact
-          path: /home/runner/        
+          path: /       
   Deployment:
       runs-on: ubuntu-latest
       needs: build 
@@ -66,7 +66,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
-          SRC_PATH: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+          SRC_PATH: /
           REMOTE_PATH: /
     #     PHP_LINT: TRUE
       #    FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
