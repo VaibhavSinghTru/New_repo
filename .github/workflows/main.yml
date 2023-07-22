@@ -24,14 +24,13 @@ jobs:
       - name: Deploy on WP-Engine
         env: # Or as an environment variable
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
-          PROD: 2
           STAG: pluginsuppostg
-          DEV: 2
+          
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           cd $GITHUB_WORKSPACE
           git checkout $BRANCH_NAME
-          if [ $BRANCH_NAME == "main" ]; then DEPLOY=${PROD}; elif [ $BRANCH_NAME == "stag" ]; then DEPLOY=${STAG}; elif [ $BRANCH_NAME == "dev" ]; then DEPLOY=${DEV}; else exit; fi
+          if [ $BRANCH_NAME == "niks" ]; then DEPLOY=${STAG}; else exit; fi
           mkdir ~/.ssh
           echo $WPE_SSHG_KEY_PRIVATE1 | base64 --decode >> ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
