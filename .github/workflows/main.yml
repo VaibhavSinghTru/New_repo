@@ -64,5 +64,5 @@ jobs:
           REMOTE_PATH: "wp-content/themes"
           PHP_LINT: TRUE
           FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
-          SCRIPT: "path/yourscript.sh"
+   #       SCRIPT: "path/yourscript.sh"
           CACHE_CLEAR: TRUE
