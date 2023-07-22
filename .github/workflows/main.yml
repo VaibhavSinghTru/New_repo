@@ -57,6 +57,10 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.WPENGINE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+      - name: Test Internet Connectivity
+        run: ping -c 5 sftp.wpengine.com
+      - name: Check SSH Key Permissions
+        run: ls -l ~/.ssh/id_rsa
 
       - name: Set up known hosts
         run: |
