@@ -66,11 +66,12 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
+          REMOTE_PATH: /
           echo "Connecting to WP Engine..."
-          git remote add wpengine ssh://git@sftp.wpengine.com/
-          git push wpengine          
+ #         git remote add wpengine ssh://git@sftp.wpengine.com/
+  #        git push wpengine          
    #       SRC_PATH: /
-   #       REMOTE_PATH: /
+    #       REMOTE_PATH: /
     #     PHP_LINT: TRUE
       #    FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
        #   SCRIPT: "path/yourscript.sh"
