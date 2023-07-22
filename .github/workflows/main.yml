@@ -66,7 +66,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
-          SRC_PATH: /home/runner/work/_temp/a2ba8c59-99da-4e1e-8529-75f0caab8f05.sh
+          SRC_PATH: /home/runner/work/New_repo/New_repo
           REMOTE_PATH: "wp-content/themes"
     #     PHP_LINT: TRUE
       #    FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
