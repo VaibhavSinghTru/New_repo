@@ -36,14 +36,14 @@ jobs:
       - name: a file added
         run: mkdir filearc
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
           path: /
           retention-days: 30
           
       - name: Download Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
           name: Archive artifact
           path: /       
@@ -66,8 +66,8 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
-          SRC_PATH: /
-          REMOTE_PATH: /
+   #       SRC_PATH: /
+   #       REMOTE_PATH: /
     #     PHP_LINT: TRUE
       #    FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
        #   SCRIPT: "path/yourscript.sh"
