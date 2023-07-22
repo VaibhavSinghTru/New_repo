@@ -66,9 +66,9 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
-          SRC_PATH: "/home/runner/_work/TBS-Gamification/"
-          REMOTE_PATH: "wp-content/themes"
-          PHP_LINT: TRUE
-          FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
-          SCRIPT: "path/yourscript.sh"
-          CACHE_CLEAR: TRUE
+  #        SRC_PATH: "/home/runner/_work/TBS-Gamification/"
+   #       REMOTE_PATH: "wp-content/themes"
+    #     PHP_LINT: TRUE
+      #    FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
+       #   SCRIPT: "path/yourscript.sh"
+        #  CACHE_CLEAR: TRUE
