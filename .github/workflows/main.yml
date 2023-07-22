@@ -56,7 +56,7 @@ jobs:
         uses: wpengine/github-action-wpe-site-deploy@v3.1.1
         with:
         # Deploy vars 
-          WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
+          WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }} 
           WPE_ENV: pluginsuppostg
           script: chmod 600 /github/home/.ssh/github_action
           # Deploy Options
