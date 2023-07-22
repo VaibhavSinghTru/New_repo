@@ -55,14 +55,14 @@ jobs:
       - name: Start SSH Agent
         run: |
           eval "$(ssh-agent -s)"
-          ssh-add /github/home/.ssh/github_action
+          ssh-add /github/home/.ssh/WPE_SSHG_KEY_PRIVATE
       - name: GitHub Action Deploy to WP Engine
         uses: wpengine/github-action-wpe-site-deploy@v3.1.1
         with:
         # Deploy vars 
           WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
           WPE_ENV: pluginsuppostg
-          script: chmod 600 /github/home/.ssh/github_action
+          script: chmod 600 /github/home/.ssh/WPE_SSHG_KEY_PRIVATE
           # Deploy Options
           SRC_PATH: "${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns"
           REMOTE_PATH: "wp-content/themes"
