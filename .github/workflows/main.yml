@@ -56,6 +56,7 @@ jobs:
         env: # Or as an environment variable
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
           STAG: pluginsuppostg
+          CUSTOM_SSH_PORT: 2222
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           cd $GITHUB_WORKSPACE
@@ -67,7 +68,7 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
-          rsync -avz --delete ./ pluginsuppostg@pluginsuppostg.sftp.wpengine.com:/          
+          rsync -avz --delete "ssh -p $CUSTOM_SSH_PORT" ./ pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:/          
           echo "Hello......!"
   #        REMOTE_PATH: "wp-content/"
   #        git remote add wpengine ssh://git@sftp.wpengine.com/
