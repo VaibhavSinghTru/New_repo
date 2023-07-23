@@ -67,7 +67,7 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
-          rsync -avz --delete ./ pluginsuppostg@pluginsuppostg:/          
+          rsync -avz --delete ./ pluginsuppostg@pluginsuppostg.sftp.wpengine.com:/          
           echo "Hello......!"
   #        REMOTE_PATH: "wp-content/"
   #        git remote add wpengine ssh://git@sftp.wpengine.com/
