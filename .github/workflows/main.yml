@@ -69,8 +69,7 @@ jobs:
           echo "Connecting to WP Engine..."
           
           echo "Hello......!"
- #         SRC_PATH: ./
-  #        REMOTE_PATH: /
+          REMOTE_PATH: "wp-content/"
   #        git remote add wpengine ssh://git@sftp.wpengine.com/
   #        git push wpengine ${{ github.ref }}:main
     #      SRC_PATH: ./
