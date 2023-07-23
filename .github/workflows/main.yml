@@ -35,12 +35,12 @@ jobs:
 
       - name: a file added
         run: mkdir filearc
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Archive artifact
-          path: ./
-          retention-days: 30
+#      - name: Upload Artifact
+ #       uses: actions/upload-artifact@v2
+  #      with:
+   #       name: Archive artifact
+    #      path: ./
+     #     retention-days: 30
           
 #      - name: Download Artifact
  #       uses: actions/download-artifact@v2
@@ -69,8 +69,8 @@ jobs:
           echo "Connecting to WP Engine..."
           
           echo "Hello......!"
-          SRC_PATH: ./
-          REMOTE_PATH: /
+ #         SRC_PATH: ./
+  #        REMOTE_PATH: /
   #        git remote add wpengine ssh://git@sftp.wpengine.com/
   #        git push wpengine ${{ github.ref }}:main
     #      SRC_PATH: ./
