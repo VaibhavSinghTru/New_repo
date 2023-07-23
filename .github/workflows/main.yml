@@ -67,7 +67,7 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
-          rsync --itemize-changes -av -e "ssh -i ~/.ssh/id_rsa" $GITHUB_WORKSPACE/ ${STAG}@${STAG}.ssh.wpengine.net:/home/wpe-user/sites/$STAG/
+          rsync --itemize-changes -av -e "ssh -i ~/.ssh/id_rsa" ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ ${STAG}@${STAG}.ssh.wpengine.net:/$STAG/
           echo "Hello......!"
   #        REMOTE_PATH: "wp-content/"
   #        git remote add wpengine ssh://git@sftp.wpengine.com/
