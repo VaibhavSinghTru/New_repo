@@ -69,7 +69,7 @@ jobs:
           echo "Connecting to WP Engine..."
           pwd
           ls
-          rsync -arzh $GITHUB_WORKSPACE/* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/wp-content/
+          rsync -arzh "ssh -i ~/.ssh/id_rsa" $GITHUB_WORKSPACE/* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/wp-content/
           echo "After rsync....." 
           pwd
           ls
