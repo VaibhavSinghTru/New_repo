@@ -71,9 +71,10 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
-          rsync -avz --delete -e "ssh -p $CUSTOM_SSH_PORT" "${{ env.SRC_PATH }}" "pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:${{ env.REMOTE_PATH }}"
-#          SRC_PATH: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
- #         REMOTE_PATH: /
+          rsync --itemize-changes -av -e "ssh -i ~/.ssh/id_rsa" ${{ github.workspace }}/ ${pluginsuppostg}@${pluginsuppostg}.ssh.wpengine.net:/home/wpe-user/sites/$pluginsuppostg/
+#          rsync -avz --delete -e "ssh -p $CUSTOM_SSH_PORT" "${{ env.SRC_PATH }}" "pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:${{ env.REMOTE_PATH }}"
+ #          SRC_PATH: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+  #         REMOTE_PATH: /
 #          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
  #         git init
   #        git config --global user.email "vaibhav.singh@tru.agency"
