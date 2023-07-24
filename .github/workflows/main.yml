@@ -37,12 +37,19 @@ jobs:
         run: |
             pwd
             ls
+            tree /
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
-          path: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+          path: New_repo
           retention-days: 30
+      - name: create directory
+        run: |
+            mkdir vaibhav
+            pwd
+            ls
+       #     cp- R dist/* vaibhav/
           
 #      - name: Download Artifact
  #       uses: actions/download-artifact@v2
