@@ -32,12 +32,7 @@ jobs:
 
       - name: Build
         run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
-
-      - name: a file added
-        run: |
-            pwd
-            ls
-            tree /
+        
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
@@ -46,6 +41,7 @@ jobs:
           retention-days: 30
       - name: create directory
         run: |
+            tree TBS-Gamification-dev
             mkdir vaibhav
             pwd
             ls
