@@ -67,9 +67,10 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
+          sudo apt install rsync -y
           pwd
           ls
-          rsync -arzh ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ pluginsuppostg@pluginsuppostg.ssh.wpengine.net
+          rsync -arzh ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/wp-content/
           echo "After rsync....." 
           pwd
           ls
