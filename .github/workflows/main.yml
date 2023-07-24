@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
-          path: ./
+          path: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
           retention-days: 30
           
 #      - name: Download Artifact
@@ -68,25 +68,21 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
-          git init
-          git config --global user.email "vaibhav.singh@tru.agency"
-          git config --global user.name "vaibhavsinghtru"
-          git config --list
-          git add . --all
-          git commit -m "push all files"
-          git remote add origin git@git.wpengine.com:pluginsuppostg.git
-          git push origin main
-          echo "Hello......!"
-          
-           
-#          rsync -avz --delete "ssh -p 2222 ./ pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:/          
-         
-  #        REMOTE_PATH: "wp-content/"
+          SRC_PATH: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+          REMOTE_PATH: /
+#          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+ #         git init
+  #        git config --global user.email "vaibhav.singh@tru.agency"
+   #       git config --global user.name "vaibhavsinghtru"
+    #      git config --list
+     #     git add . --all
+      #    git commit -m "push all files"
+       #   git remote add origin git@git.wpengine.com:pluginsuppostg.git
+        #  git push origin main         
+#         rsync -avz --delete "ssh -p 2222 ./ pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:/          
+ #         REMOTE_PATH: "wp-content/"
   #        git remote add wpengine ssh://git@sftp.wpengine.com/
-  #        git push wpengine ${{ github.ref }}:main
-    #      SRC_PATH: ./
-     #     REMOTE_PATH: /
+   #      git push wpengine ${{ github.ref }}:main
     #     PHP_LINT: TRUE
       #    FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
        #   SCRIPT: "path/yourscript.sh"
