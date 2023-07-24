@@ -45,8 +45,8 @@ jobs:
             mkdir vaibhav
             pwd
             ls
-            cp- R /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* ../
-            cd /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+            cp- R /TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* ../
+            pwd
             ls
 #      - name: Download Artifact
  #       uses: actions/download-artifact@v2
