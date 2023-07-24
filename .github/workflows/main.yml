@@ -33,26 +33,22 @@ jobs:
       - name: Build
         run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
         
-#      - name: Upload Artifact
- #       uses: actions/upload-artifact@v2
-  #      with:
-   #       name: Archive artifact
-    #      path: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
-     #     retention-days: 30
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Archive artifact
+          path: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+          retention-days: 30
       - name: create directory
         run: |
-            tree TBS-Gamification-dev
             mkdir vaibhav
             pwd
             ls
-      - name: hello
+      - name: Copy dist folder's file on vaibhav
         run: |
             tree /home/runner/work/New_repo/New_repo
             sudo cp -Rf TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* vaibhav/
             cd vaibhav
-            ls
- #           pwd
-  #          ls
 #      - name: Download Artifact
  #       uses: actions/download-artifact@v2
   #      with:
@@ -88,22 +84,3 @@ jobs:
           git remote
           git push --force production master
           echo "Connecting to WP Engine..."
- #         pwd
-  #        ls
-   #       rsync -arzh "ssh -i ~/.ssh/id_rsa" $GITHUB_WORKSPACE/* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/wp-content/
-    #      echo "After rsync....." 
-     #     pwd
-      #    ls
-       #   echo "vaibhav"
-#          rsync -avz --delete -e "ssh -p $CUSTOM_SSH_PORT" "${{ env.SRC_PATH }}" "pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:${{ env.REMOTE_PATH }}"
- #          SRC_PATH: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
-  #         REMOTE_PATH: /
-#          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/         
-#         rsync -avz --delete "ssh -p 2222 ./ pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:/          
- #         REMOTE_PATH: "wp-content/"
-  #        git remote add wpengine ssh://git@sftp.wpengine.com/
-   #      git push wpengine ${{ github.ref }}:main
-    #     PHP_LINT: TRUE
-      #    FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
-       #   SCRIPT: "path/yourscript.sh"
-        #  CACHE_CLEAR: TRUE
