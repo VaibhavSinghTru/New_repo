@@ -68,6 +68,7 @@ jobs:
           # Deploy Options
           echo "Connecting to WP Engine..."
           rsync -arzh ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ pluginsuppostg@pluginsuppostg.ssh.wpengine.net
+          echo "vaibhav"
 #          rsync -avz --delete -e "ssh -p $CUSTOM_SSH_PORT" "${{ env.SRC_PATH }}" "pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:${{ env.REMOTE_PATH }}"
  #          SRC_PATH: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
   #         REMOTE_PATH: /
