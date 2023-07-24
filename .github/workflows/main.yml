@@ -48,7 +48,7 @@ jobs:
       - name: hello
         run: |
             tree /home/runner/work/New_repo/New_repo
-            sudo cp- R TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* TBS-Gamification-dev/
+            sudo cp -Rf TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* TBS-Gamification-dev/
  #           pwd
   #          ls
 #      - name: Download Artifact
