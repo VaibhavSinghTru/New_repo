@@ -68,8 +68,12 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
-          git remote add origin git@git.wpengine.com:main/
+          git add .
+          git commit -m "push all files"
+          git push origin main
           echo "Hello......!"
+#          git remote add origin git@git.wpengine.com:main/
+          
 #          rsync -avz --delete "ssh -p 2222 ./ pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:/          
          
   #        REMOTE_PATH: "wp-content/"
