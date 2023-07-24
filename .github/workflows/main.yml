@@ -33,8 +33,8 @@ jobs:
       - name: Build
         run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
 
-      - name: a file added
-        run: mkdir filearc
+#      - name: a file added
+ #       run: mkdir filearc
 #      - name: Upload Artifact
  #       uses: actions/upload-artifact@v2
   #      with:
@@ -56,10 +56,6 @@ jobs:
         env: # Or as an environment variable
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
           STAG: pluginsuppostg
-          CUSTOM_SSH_PORT: 22
-          SRC_PATH: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
-          REMOTE_PATH: /
-
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           cd $GITHUB_WORKSPACE
@@ -71,7 +67,7 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
-          rsync -arzh ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ pluginsuppostg@git.wpengine.net:/pluginsuppostg/
+          rsync -arzh ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ pluginsuppostg@pluginsuppostg.ssh.wpengine.net
 #          rsync -avz --delete -e "ssh -p $CUSTOM_SSH_PORT" "${{ env.SRC_PATH }}" "pluginsuppostg-Vaibhav@pluginsuppostg.sftp.wpengine.com:${{ env.REMOTE_PATH }}"
  #          SRC_PATH: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
   #         REMOTE_PATH: /
