@@ -69,7 +69,7 @@ jobs:
           echo "Connecting to WP Engine..."
           pwd
           ls
-          rsync -arzh /TBS-Gamification-dev/games-and-quizzes/empty-returns/* pluginsuppostg@pluginsuppostg.ssh.wpengine.net
+          rsync -arzh /* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/
           echo "After rsync....." 
           pwd
           ls
