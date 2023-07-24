@@ -45,7 +45,8 @@ jobs:
             mkdir vaibhav
             pwd
             ls
-            tree /home/runner/work/New_repo/New_repo
+      - name: hello
+        run:  tree /home/runner/work/New_repo/New_repo
 #            sudo cp- R /TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* ../empty-returns/
  #           pwd
   #          ls
