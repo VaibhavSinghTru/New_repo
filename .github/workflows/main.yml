@@ -47,7 +47,7 @@ jobs:
       - name: Copy dist folder's file on vaibhav
         run: |
             tree /home/runner/work/New_repo/New_repo
-            sudo cp -Rf TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* vaibhav/
+            sudo cp -Rf TBS-Gamification-dev/games-and-quizzes/empty-returns/* TBS-Gamification-dev/games-and-quizzes/
             cd vaibhav
 #      - name: Download Artifact
  #       uses: actions/download-artifact@v2
