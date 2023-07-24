@@ -35,12 +35,12 @@ jobs:
 
 #      - name: a file added
  #       run: mkdir filearc
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Archive artifact
-          path: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
-          retention-days: 30
+#      - name: Upload Artifact
+ #       uses: actions/upload-artifact@v2
+  #      with:
+   #       name: Archive artifact
+    #      path: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+     #     retention-days: 30
           
 #      - name: Download Artifact
  #       uses: actions/download-artifact@v2
@@ -67,10 +67,11 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
-          sudo apt install rsync -y
           pwd
           ls
-          rsync -arzh ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/wp-content/
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/*
+          pwd
+          rsync -arzh /* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/wp-content/
           echo "After rsync....." 
           pwd
           ls
