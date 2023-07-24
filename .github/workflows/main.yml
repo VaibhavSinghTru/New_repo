@@ -33,8 +33,10 @@ jobs:
       - name: Build
         run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
 
-#      - name: a file added
- #       run: mkdir filearc
+      - name: a file added
+        run: |
+            pwd
+            ls
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
