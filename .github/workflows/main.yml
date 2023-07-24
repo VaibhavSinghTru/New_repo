@@ -56,7 +56,7 @@ jobs:
         env: # Or as an environment variable
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
           STAG: pluginsuppostg
-          CUSTOM_SSH_PORT: 2222
+          CUSTOM_SSH_PORT: 22
           SRC_PATH: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
           REMOTE_PATH: /
 
