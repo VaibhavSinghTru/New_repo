@@ -73,9 +73,9 @@ jobs:
           git config --global user.name "vaibhavsinghtru"
           git config --list
           git commit -m "push all files"
-          git remote add dev git@git.wpengine.com:pluginsuppostg/${STAG}.git
+          git remote add production git@git.wpengine.com:production/${DEPLOY}.git
           git remote
-          git push --force pluginsuppostg main
+          git push --force production master
           echo "Connecting to WP Engine..."
  #         pwd
   #        ls
