@@ -35,12 +35,12 @@ jobs:
 
       - name: a file added
         run: mkdir filearc
-#      - name: Upload Artifact
- #       uses: actions/upload-artifact@v2
-  #      with:
-   #       name: Archive artifact
-    #      path: ./
-     #     retention-days: 30
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Archive artifact
+          path: ./
+          retention-days: 30
           
 #      - name: Download Artifact
  #       uses: actions/download-artifact@v2
