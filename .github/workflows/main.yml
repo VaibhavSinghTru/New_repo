@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
-          path: New_repo
+          path: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
           retention-days: 30
       - name: create directory
         run: |
@@ -45,8 +45,9 @@ jobs:
             mkdir vaibhav
             pwd
             ls
-       #     cp- R dist/* vaibhav/
-          
+            cp- R /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* ../
+            cd /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+            ls
 #      - name: Download Artifact
  #       uses: actions/download-artifact@v2
   #      with:
