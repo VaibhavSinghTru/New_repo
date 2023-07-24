@@ -69,9 +69,7 @@ jobs:
           echo "Connecting to WP Engine..."
           pwd
           ls
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/*
-          pwd
-          rsync -arzh /* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/wp-content/
+          rsync -arzh /TBS-Gamification-dev/games-and-quizzes/empty-returns/* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/wp-content/
           echo "After rsync....." 
           pwd
           ls
