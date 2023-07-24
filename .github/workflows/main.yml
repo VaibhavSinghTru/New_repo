@@ -69,6 +69,7 @@ jobs:
           echo "Connecting to WP Engine..."
           pwd
           ls
+          mv /* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/
           rsync -arzh /* pluginsuppostg@pluginsuppostg.ssh.wpengine.net:/
           echo "After rsync....." 
           pwd
