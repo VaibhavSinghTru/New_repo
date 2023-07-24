@@ -33,19 +33,19 @@ jobs:
       - name: Build
         run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
         
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Archive artifact
-          path: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
-          retention-days: 30
+#      - name: Upload Artifact
+ #       uses: actions/upload-artifact@v2
+  #      with:
+   #       name: Archive artifact
+    #      path: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+     #     retention-days: 30
       - name: create directory
         run: |
             tree TBS-Gamification-dev
             mkdir vaibhav
             pwd
             ls
-            cp- R /TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* ../
+            sudo cp- R /TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/* ../empty-returns/
             pwd
             ls
 #      - name: Download Artifact
