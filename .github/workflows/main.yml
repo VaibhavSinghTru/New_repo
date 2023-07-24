@@ -68,6 +68,9 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           echo "Connecting to WP Engine..."
+          git config --global user.email "vaibhav.singh@tru.agency"
+          git config --global user.name "vaibhavsinghtru"
+          git config --list
           git add .
           git commit -m "push all files"
           git push origin main
