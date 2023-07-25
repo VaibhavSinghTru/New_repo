@@ -43,11 +43,14 @@ jobs:
           name: Archive artifact
           path: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
           retention-days: 30
+          run: |
+              pwd
+              tree
       - name: create directory
         run: |
             mkdir vaibhav
             pwd
-            ls
+            ls -la
 #      - name: Copy dist folder's file on vaibhav
  #       run: |
   #          tree /home/runner/work/New_repo/New_repo
@@ -57,7 +60,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: Archive artifact
-          path: /home/runner/work/New_repo/New_repo/    
+          path: /home/runner/work/New_repo/New_repo/
+          run: |
+              pwd
+              ls -la
   Deployment:
       runs-on: ubuntu-latest
       needs: build 
