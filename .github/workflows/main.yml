@@ -50,11 +50,11 @@ jobs:
   #          tree /home/runner/work/New_repo/New_repo
    #         sudo cp -Rf TBS-Gamification-dev/games-and-quizzes/empty-returns/* TBS-Gamification-dev/games-and-quizzes/
     #        cd vaibhav
-#      - name: Download Artifact
- #       uses: actions/download-artifact@v2
-  #      with:
-   #       name: Archive artifact
-    #      path: ./       
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Archive artifact
+          path: ${{ github.workspace }}       
   Deployment:
       runs-on: ubuntu-latest
       needs: build 
