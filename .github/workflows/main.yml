@@ -75,6 +75,8 @@ jobs:
           ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
           # Deploy Options
           sudo rm -rf .git
+          pwd
+          ls
           git init .
           git add . --all
           git config --global user.email "vaibhav.singh@tru.agency"
