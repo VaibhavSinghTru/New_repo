@@ -80,6 +80,13 @@ jobs:
           sudo rm -rf .git
           pwd
           ls
+      - name: Deployment
+        run: |
+          cd /home/runner/work/New_repo/New_repo/
+          ls -la
+          cd TBS-Gamification-dev
+          ls -la
+          cd ..
           git init .
           git add . --all
           git config --global user.email "vaibhav.singh@tru.agency"
