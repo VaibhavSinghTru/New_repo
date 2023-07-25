@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
       - name: Tar files
-        run: tar -czvf dist.tar.gz /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+        run: tar -cvf dist.tar /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/dist/*
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
