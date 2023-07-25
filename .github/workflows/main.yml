@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
-          path: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+          path: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
           retention-days: 30
       - name: create directory
         run: |
