@@ -35,22 +35,23 @@ jobs:
             cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
             pwd
             ls -la
-      - name: Tar files
-        run: tar -cvf dist.tar /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/*
+#      - name: Tar files
+ #       run: tar -cvf dist.tar /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/*
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
-          run: |
-            pwd
-            tree
-          path: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+          path: |
+              ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+              pwd
+              ls -la
+              tree
           retention-days: 30
-      - name: create directory
-        run: |
-            mkdir vaibhav
-            pwd
-            ls -la
+#      - name: create directory
+ #       run: |
+  #          mkdir vaibhav
+   #         pwd
+    #        ls -la
 #      - name: Copy dist folder's file on vaibhav
  #       run: |
   #          tree /home/runner/work/New_repo/New_repo
@@ -60,10 +61,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: Archive artifact
-          path: /home/runner/work/New_repo/New_repo/
-          run: |
-              pwd
-              ls -la
+          path: |
+            /home/runner/work/New_repo/New_repo/
+            pwd
+            ls -la
+            tree
   Deployment:
       runs-on: ubuntu-latest
       needs: build 
