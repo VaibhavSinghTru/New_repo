@@ -32,26 +32,24 @@ jobs:
 
       - name: Build
         run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
-      - name: Archive dist directory
-        run: |
-          tar -czvf dist.taz.gz dist
-#      - name: Upload Artifact
- #       uses: actions/upload-artifact@v2
-  #      with:
-   #       name: Archive artifact
-    #      path: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
-     #     retention-days: 30
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Archive artifact
+          path: /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/
+          retention-days: 30
+          run: tar -czvf dist.taz.gz dist
      
       - name: create directory
         run: |
             mkdir vaibhav
             pwd
             ls
-      - name: Copy dist folder's file on vaibhav
-        run: |
-            tree /home/runner/work/New_repo/New_repo
-            sudo cp -Rf TBS-Gamification-dev/games-and-quizzes/empty-returns/* TBS-Gamification-dev/games-and-quizzes/
-            cd vaibhav
+#      - name: Copy dist folder's file on vaibhav
+ #       run: |
+  #          tree /home/runner/work/New_repo/New_repo
+   #         sudo cp -Rf TBS-Gamification-dev/games-and-quizzes/empty-returns/* TBS-Gamification-dev/games-and-quizzes/
+    #        cd vaibhav
 #      - name: Download Artifact
  #       uses: actions/download-artifact@v2
   #      with:
