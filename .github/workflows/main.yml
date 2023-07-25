@@ -41,11 +41,11 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
+          run: |
+            pwd
+            tree
           path: ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
           retention-days: 30
-          run: |
-              pwd
-              tree
       - name: create directory
         run: |
             mkdir vaibhav
