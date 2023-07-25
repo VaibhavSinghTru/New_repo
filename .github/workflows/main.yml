@@ -31,7 +31,10 @@ jobs:
         run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
 
       - name: Build
-        run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
+        run: |
+            cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
+            pwd
+            ls -la
       - name: Tar files
         run: tar -cvf dist.tar /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/*
       - name: Upload Artifact
