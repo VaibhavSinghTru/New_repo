@@ -84,7 +84,7 @@ jobs:
         run: |
           cd /home/runner/work/New_repo/New_repo/
           ls -la
-          cd TBS-Gamification-dev
+          cd /TBS-Gamification-dev/games-and-quizzes/empty-returns/
           ls -la
           cd ..
           git init .
