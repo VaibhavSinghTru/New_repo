@@ -7,6 +7,7 @@ on:
       - niks
 jobs:
   build:
+    if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -20,86 +21,37 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-# create env file and install npm dependencies
+
       - name: Create .env file Backend
         run: |
-         if [ ${{ github.ref }} == 'refs/heads/dev' ]; then
           echo "$DEV_ENV" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
-         elif [ ${{ github.ref }} == 'refs/heads/niks' ]; then
-          echo "$STAG_ENV" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
-          else          
-            echo "not working properly"
-            exit 1
-          fi
         shell: bash
         env:
           DEV_ENV: ${{ secrets.ENV_FILE_DEV }}
-          STAG_ENV: ${{ secrets.ENV_FILE_DEV }}
-  # create build         
+
+      - name: Install dependencies
+        run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
+
       - name: Build
         run: |
-          if [ ${{ github.ref }} == 'refs/heads/dev' ]; then
             cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
-          elif [ ${{ github.ref }} == 'refs/heads/niks' ]; then
-            cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
-          else
-            exit 1
-          fi
-#      - name: Tar files
- #       run: tar -cvf dist.tar /home/runner/work/New_repo/New_repo/TBS-Gamification-dev/games-and-quizzes/empty-returns/*
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Archive artifact
-          path: |
-              ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/
-              pwd
-              ls -la
-              tree
+          path: ./
           retention-days: 30
-#      - name: create directory
- #       run: |
-  #          mkdir vaibhav
-   #         pwd
-    #        ls -la
-#      - name: Copy dist folder's file on vaibhav
- #       run: |
-  #          tree /home/runner/work/New_repo/New_repo
-   #         sudo cp -Rf TBS-Gamification-dev/games-and-quizzes/empty-returns/* TBS-Gamification-dev/games-and-quizzes/
-    #        cd vaibhav
-#      - name: Download Artifact
- #       uses: actions/download-artifact@v2
-  #      with:
-   #       name: Archive artifact
-    #      path: |
-     #       /home/runner/work/New_repo/New_repo/
-      #      pwd
-       #     ls -la
-        #    tree
-#  Deployment:
- #     runs-on: ubuntu-latest
-  #    needs: build 
-   #   steps: 
-    #  - uses: actions/checkout@v3
+
       - name: GitHub Action Deploy to WP Engine
         env: # Or as an environment variable
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
           STAG: pluginsuppostg
-          PROD: tbsgameprod
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           cd $GITHUB_WORKSPACE
           git checkout $BRANCH_NAME
-          if [ $BRANCH_NAME == "main" ]; then
-            DEPLOY=${STAG}
-          elif [ $BRANCH_NAME == "niks" ]; then
-            DEPLOY=${PROD}                      
-          else
-            echo "Branch not found."
-            exit 1
-          fi          
+          if [ $BRANCH_NAME == "main" ]; then DEPLOY=${STAG}; else exit; fi
           mkdir ~/.ssh
           echo $WPE_SSHG_KEY_PRIVATE1 | base64 --decode >> ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
@@ -117,3 +69,66 @@ jobs:
           git remote
           git push --force production master
           echo "Connecting to WP Engine..."
+  build-for-niks:
+    if: github.ref_name == 'niks'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.15.0]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Create .env file Backend
+        run: |
+          echo "$DEV_ENV" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
+        shell: bash
+        env:
+          DEV_ENV: ${{ secrets.ENV_FILE_DEV }}
+
+      - name: Install dependencies
+        run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
+
+      - name: Build
+        run: |
+            cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Archive artifact
+          path: ./
+          retention-days: 30
+
+      - name: GitHub Action Deploy to WP Engine
+        env: # Or as an environment variable
+          WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
+          STAG: pluginsuppostg
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          cd $GITHUB_WORKSPACE
+          git checkout $BRANCH_NAME
+          if [ $BRANCH_NAME == "main" ]; then DEPLOY=${STAG}; else exit; fi
+          mkdir ~/.ssh
+          echo $WPE_SSHG_KEY_PRIVATE1 | base64 --decode >> ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
+          # Deploy Options
+          sudo rm -rf .git
+          pwd
+          git init .
+          git add . --all
+          git config --global user.email "vaibhav.singh@tru.agency"
+          git config --global user.name "vaibhavsinghtru"
+          git config --list
+          git commit -m "push all files"
+          git remote add production git@git.wpengine.com:production/${DEPLOY}.git
+          git remote
+          git push --force production master
+          echo "Connecting to WP Engine..."\    
