@@ -26,7 +26,7 @@ jobs:
          if [ ${{ github.ref }} == 'refs/heads/dev' ]; then
           echo "$DEV_ENV" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
           cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
-         elif [ ${{ github.ref }} == 'refs/heads/stag' ]; then
+         elif [ ${{ github.ref }} == 'refs/heads/niks' ]; then
           echo "$STAG_ENV" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
           cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
           else          
@@ -42,7 +42,7 @@ jobs:
         run: |
           if [ ${{ github.ref }} == 'refs/heads/dev' ]; then
             cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
-          elif [ ${{ github.ref }} == 'refs/heads/stag' ]; then
+          elif [ ${{ github.ref }} == 'refs/heads/niks' ]; then
             cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
           else
             exit 1
