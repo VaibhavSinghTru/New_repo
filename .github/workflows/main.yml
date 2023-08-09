@@ -20,9 +20,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: step-1
+        run: echo "${ENV_BRANCH}"
+              
       - name: Create .env file Backend
         run: |
           echo "$DEV_ENV"
         shell: bash
         env:
-          DEV_ENV: ${{ secrets.$ENV_BRANCH }}
+          DEV_ENV: ${{ secrets[env.ENV_BRANCH] }}
