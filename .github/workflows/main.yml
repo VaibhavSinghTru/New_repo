@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - niks
+env:
+  ENV_BRANCH: ENV_FILE_$GITHUB_REF_NAME
+
 jobs:
   build:
     if: github.ref_name == 'main'
@@ -17,118 +20,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
       - name: Create .env file Backend
         run: |
-          echo "$DEV_ENV" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
+          echo "$DEV_ENV"
         shell: bash
         env:
-          DEV_ENV: ${{ secrets.ENV_FILE_DEV }}
-
-      - name: Install dependencies
-        run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
-
-      - name: Build
-        run: |
-            cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Archive artifact
-          path: ./
-          retention-days: 30
-
-      - name: GitHub Action Deploy to WP Engine
-        env: # Or as an environment variable
-          WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
-          STAG: pluginsuppostg
-        run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          cd $GITHUB_WORKSPACE
-          git checkout $BRANCH_NAME
-          if [ $BRANCH_NAME == "main" ]; then DEPLOY=${STAG}; else exit; fi
-          mkdir ~/.ssh
-          echo $WPE_SSHG_KEY_PRIVATE1 | base64 --decode >> ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
-          # Deploy Options
-          sudo rm -rf .git
-          pwd
-          git init .
-          git add . --all
-          git config --global user.email "vaibhav.singh@tru.agency"
-          git config --global user.name "vaibhavsinghtru"
-          git config --list
-          git commit -m "push all files"
-          git remote add production git@git.wpengine.com:production/${DEPLOY}.git
-          git remote
-          git push --force production master
-          echo "Connecting to WP Engine..."
-  build-for-niks:
-    if: github.ref_name == 'niks'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.15.0]
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Create .env file Backend
-        run: |
-          echo "$DEV_ENV" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
-        shell: bash
-        env:
-          DEV_ENV: ${{ secrets.ENV_FILE_DEV }}
-
-      - name: Install dependencies
-        run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
-
-      - name: Build
-        run: |
-            cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Archive artifact
-          path: ./
-          retention-days: 30
-
-      - name: GitHub Action Deploy to WP Engine
-        env: # Or as an environment variable
-          WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
-          STAG: pluginsuppostg
-        run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          cd $GITHUB_WORKSPACE
-          git checkout $BRANCH_NAME
-          if [ $BRANCH_NAME == "main" ]; then DEPLOY=${STAG}; else exit; fi
-          mkdir ~/.ssh
-          echo $WPE_SSHG_KEY_PRIVATE1 | base64 --decode >> ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
-          # Deploy Options
-          sudo rm -rf .git
-          pwd
-          git init .
-          git add . --all
-          git config --global user.email "vaibhav.singh@tru.agency"
-          git config --global user.name "vaibhavsinghtru"
-          git config --list
-          git commit -m "push all files"
-          git remote add production git@git.wpengine.com:production/${DEPLOY}.git
-          git remote
-          git push --force production master
-          echo "Connecting to WP Engine..."\    
+          DEV_ENV: ${{ secrets.$ENV_BRANCH }}
