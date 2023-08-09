@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-      - niks
-env:
-  ENV_BRANCH: ENV_FILE_$GITHUB_REF_NAME
 
 jobs:
   build:
@@ -17,17 +14,6 @@ jobs:
         node-version: [16.15.0]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        
+    
       - run: echo ${{ secrets[github.ref_name] }} | sed 's/./& /g'
       
-      - name: step-1
-        run: echo "${ENV_BRANCH}"
-              
-      - name: Create .env file Backend
-        run: |
-          echo "$DEV_ENV"
-        shell: bash
-        env:
-          DEV_ENV: ${{ secrets[env.ENV_BRANCH] }}
