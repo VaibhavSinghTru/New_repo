@@ -19,7 +19,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+        
+      - run: echo ${{ secrets[github.ref_name] }}
+      
       - name: step-1
         run: echo "${ENV_BRANCH}"
               
