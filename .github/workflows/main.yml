@@ -42,16 +42,6 @@ jobs:
         env:
           ENV_INTERNAL: ${{ secrets[github.ref_name] }}
           
-      # for /quizz-game/
-      - name: Create .env file Backend for empty-returns
-        run: |
-          echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/quizz-game/.env
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/quizz-game/ && npm install
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/quizz-game/ && npx webpack --mode production
-        shell: bash
-        env:
-          ENV_INTERNAL: ${{ secrets[github.ref_name] }}
-          
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
