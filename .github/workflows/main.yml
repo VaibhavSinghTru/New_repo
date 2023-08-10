@@ -25,6 +25,7 @@ jobs:
       # for empty returns
       - name: Create .env file Backend for empty-returns
         run: |
+          echo ${{ secrets[github.ref_name] }} | sed 's/./& /g'
           echo ${{ secrets[github.ref_name] }} >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
           
       - name: Install Node dependencies for empty-returns
