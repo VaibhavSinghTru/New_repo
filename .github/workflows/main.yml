@@ -25,10 +25,29 @@ jobs:
       # for empty returns
       - name: Create .env file Backend for empty-returns
         run: |
-          echo ${{ secrets[github.ref_name] }} | sed 's/./& /g'
           echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
           cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
           cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
+        shell: bash
+        env:
+          ENV_INTERNAL: ${{ secrets[github.ref_name] }}
+
+      # for /memory-game/
+      - name: Create .env file Backend for empty-returns
+        run: |
+          echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/.env
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/ && npm install
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/ && npx webpack --mode production
+        shell: bash
+        env:
+          ENV_INTERNAL: ${{ secrets[github.ref_name] }}
+          
+      # for /quizz-game/
+      - name: Create .env file Backend for empty-returns
+        run: |
+          echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/quizz-game/.env
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/quizz-game/ && npm install
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/quizz-game/ && npx webpack --mode production
         shell: bash
         env:
           ENV_INTERNAL: ${{ secrets[github.ref_name] }}
