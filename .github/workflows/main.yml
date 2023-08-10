@@ -1,9 +1,14 @@
-name: TBS-Gamification
+
+name: New_repo
+
 on:
   push:
-    branches: [ niks ]
+    branches:
+      - main
+      - niks
 jobs:
   build:
+    if: github.ref_name == 'niks'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,53 +19,33 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Create .env file Backend
+        
+      # for empty returns
+      - name: Create .env file Backend for empty-returns
         run: |
-          echo "$DEV_ENV" >> ${{ github.workspace }}/games-and-quizzes/empty-returns/.env
+          echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
         shell: bash
         env:
-          DEV_ENV: ${{ secrets.ENV_FILE_DEV }}
+          ENV_INTERNAL: ${{ secrets[github.ref_name] }}
 
-      - name: Install dependencies
-        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npm install
-
-      - name: Build
-        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npx webpack --mode production
-
-      - name: a file added
-        run: mkdir filearc
-        
-      - name: Deploy to WP Engine
-        on:
-          push:
-            branches: [ niks ]
-        jobs:
-          build:
-            runs-on: ubuntu-latest  
-            steps: 
-            - uses: actions/checkout@v3
-            - name: GitHub Action Deploy to WP Engine
-              env: # Or as an environment variable
-          WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
-          STAG: pluginsuppostg
-          
+      # for /memory-game/
+      - name: Create .env file Backend for empty-returns
         run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          cd $GITHUB_WORKSPACE
-          git checkout $BRANCH_NAME
-          if [ $BRANCH_NAME == "niks" ]; then DEPLOY=${STAG}; else exit; fi
-          mkdir ~/.ssh
-          echo $WPE_SSHG_KEY_PRIVATE1 | base64 --decode >> ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
-                # Deploy Options
-                SRC_PATH: "/home/runner/work/TBS-Gamification/"
-                REMOTE_PATH: "wp-content/themes"
-                PHP_LINT: TRUE
-                FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
-                SCRIPT: "path/yourscript.sh"
-                CACHE_CLEAR: TRUE
+          echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/.env
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/ && npm install
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/ && npx webpack --mode production
+        shell: bash
+        env:
+          ENV_INTERNAL: ${{ secrets[github.ref_name] }}
+          
+      - name: Upload Artifact of niks branch
+        uses: actions/upload-artifact@v3
+        with:
+          name: Archive artifact with dev_env
+          path: ./
+          retention-days: 1  
