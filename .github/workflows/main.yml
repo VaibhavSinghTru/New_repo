@@ -27,10 +27,10 @@ jobs:
           echo ${{ secrets[github.ref_name] }} >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns.env
           
       - name: Install Node dependencies for empty-returns
-        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npm install
+        run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
 
       - name: Build for empty-returns
-        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npx webpack --mode production
+        run: cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
