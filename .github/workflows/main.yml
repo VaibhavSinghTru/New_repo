@@ -27,6 +27,8 @@ jobs:
         run: |
           echo ${{ secrets[github.ref_name] }} | sed 's/./& /g'
           echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
         shell: bash
         env:
           ENV_INTERNAL: ${{ secrets[github.ref_name] }}
