@@ -4,25 +4,37 @@ on:
   push:
     branches:
       - main
-
+      - niks
 jobs:
   build:
-    if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.15.0]
 
     steps:
-    
-      - run: echo ${{ secrets[github.ref_name] }} | sed 's/./& /g'
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - run: echo ${{ secrets[github.ref_name] }} >> ${{ github.workspace }}/.env
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+        
+      # for empty returns
+      - name: Create .env file Backend for empty-returns
+        run: |
+          echo ${{ secrets[github.ref_name] }} >> ${{ github.workspace }}/games-and-quizzes/empty-returns/.env
+          
+      - name: Install Node dependencies for empty-returns
+        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npm install
 
+      - name: Build for empty-returns
+        run: cd ${{ github.workspace }}/games-and-quizzes/empty-returns/ && npx webpack --mode production
+      
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: Archive artifact
           path: ./
-          retention-days: 30
-      
+          retention-days: 1  
