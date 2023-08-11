@@ -45,6 +45,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Archive artifact with dev_env
+          name: Archive artifact with env file in main
           path: ./
           retention-days: 1  
