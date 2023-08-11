@@ -46,6 +46,6 @@ jobs:
       - name: Upload Artifact of niks branch
         uses: actions/upload-artifact@v3
         with:
-          name: Archive artifact with env file on niks
+          name: Archive artifact after delete enc file from secret
           path: ./
           retention-days: 1  
