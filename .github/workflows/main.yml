@@ -33,6 +33,13 @@ jobs:
         shell: bash
         env:
           ENV_INTERNAL: ${{ secrets[github.ref_name] }}  
+          
+      - name: Upload Artifact of niks branch
+        uses: actions/upload-artifact@v3
+        with:
+          name: Artifact File 
+          path: ./
+          retention-days: 1
 
       - name: GitHub Action Deploy to WP Engine
         env: # Or as an environment variable
