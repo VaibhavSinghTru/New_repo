@@ -1,5 +1,4 @@
 name: New_repo
-
 on:
   push:
     branches:
@@ -7,7 +6,6 @@ on:
       - niks
 jobs:
   build:
-    if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,23 +26,36 @@ jobs:
           echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
           cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
           cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
-        shell: bash
-        env:
-          ENV_INTERNAL: ${{ secrets[github.ref_name] }}
-
-      # for /memory-game/
-      - name: Create .env file Backend for empty-returns
-        run: |
+          
           echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/.env
           cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/ && npm install
           cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/ && npx webpack --mode production
         shell: bash
         env:
-          ENV_INTERNAL: ${{ secrets[github.ref_name] }}
-          
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Archive artifact without env file in main
-          path: ./
-          retention-days: 1  
+          ENV_INTERNAL: ${{ secrets[github.ref_name] }}  
+
+      - name: GitHub Action Deploy to WP Engine
+        env: # Or as an environment variable
+          WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
+          PROD: tbsgameprod
+          STAG: tbsgamestg
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          cd $GITHUB_WORKSPACE
+          git checkout $BRANCH_NAME
+          if [ $BRANCH_NAME == "main" ]; then DEPLOY=${PROD}; elif [ $BRANCH_NAME == "niks" ]; then DEPLOY=${STAG};   else exit; fi
+          mkdir ~/.ssh
+          echo $WPE_SSHG_KEY_PRIVATE1 | base64 --decode >> ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H -p 22 git.wpengine.com >> ~/.ssh/known_hosts
+          sudo rm -R .git
+          git init .
+          git add . --all
+          git config --global user.email "git-actions@tru.agency"
+          git config --global user.name "git-actions"
+          git config --list
+          git commit -m "GITHUB_SHA"
+          git remote add production git@git.wpengine.com:production/${DEPLOY}.git
+          git remote
+          git push --force production master
+          echo "Connecting to WP Engine..." 
