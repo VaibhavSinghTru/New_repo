@@ -37,20 +37,20 @@ jobs:
       - name: Upload Artifact of niks branch
         uses: actions/upload-artifact@v3
         with:
-          name: Artifact File 
+          name: Artifact File Main-DEV
           path: ./
           retention-days: 1
 
       - name: GitHub Action Deploy to WP Engine
         env: # Or as an environment variable
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
-          PROD: tbsgameprod
+          DEV: tbsgamedev
           STAG: tbsgamestg
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           cd $GITHUB_WORKSPACE
           git checkout $BRANCH_NAME
-          if [ $BRANCH_NAME == "main" ]; then DEPLOY=${PROD}; elif [ $BRANCH_NAME == "niks" ]; then DEPLOY=${STAG};   else exit; fi
+          if [ $BRANCH_NAME == "main" ]; then DEPLOY=${DEV}; elif [ $BRANCH_NAME == "niks" ]; then DEPLOY=${STAG};   else exit; fi
           mkdir ~/.ssh
           echo $WPE_SSHG_KEY_PRIVATE1 | base64 --decode >> ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
