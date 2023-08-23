@@ -32,6 +32,13 @@ jobs:
         env:
           ENV_INTERNAL: ${{ secrets[github.ref_name] }}  
 
+      - name: Upload Artifact of niks branch
+        uses: actions/upload-artifact@v3
+        with:
+          name: Artifact File Main-DEV
+          path: ./
+          retention-days: 1
+          
       - name: GitHub Action Deploy to WP Engine
         env: # Or as an environment variable
           WPE_SSHG_KEY_PRIVATE1: ${{ secrets.WPE_SSHG_KEY_PRIVATE1 }}
