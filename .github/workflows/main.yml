@@ -24,22 +24,13 @@ jobs:
       - name: Create .env file Backend for empty-returns
         run: |
           echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/.env
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npx webpack --mode production
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/empty-returns/ && npm install && npx webpack --mode production
           
           echo "$ENV_INTERNAL" >> ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/.env
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/ && npm install
-          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/ && npx webpack --mode production
+          cd ${{ github.workspace }}/TBS-Gamification-dev/games-and-quizzes/memory-game/ && npm install && npx webpack --mode production
         shell: bash
         env:
           ENV_INTERNAL: ${{ secrets[github.ref_name] }}  
-          
-      - name: Upload Artifact of niks branch
-        uses: actions/upload-artifact@v3
-        with:
-          name: Artifact File Main-DEV
-          path: ./
-          retention-days: 1
 
       - name: GitHub Action Deploy to WP Engine
         env: # Or as an environment variable
@@ -65,4 +56,3 @@ jobs:
           git remote add production git@git.wpengine.com:production/${DEPLOY}.git
           git remote
           git push --force production master
-          echo "Connecting to WP Engine..." 
